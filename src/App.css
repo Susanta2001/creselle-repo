@@ -281,9 +281,10 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  animation: background-animation 10s infinite;
+  /* animation: background-animation 10s infinite; */
+  background-image: url('D:\Web Development\React Websites\creselle\src\images\check-out-box-img-two.jpeg');
 }
-@keyframes background-animation {
+/* @keyframes background-animation {
   0% {
     background-image: url('D:\Web Development\React Websites\creselle\src\images\check-out-box-img-two.jpeg');
   }
@@ -293,7 +294,7 @@ body{
   100% {
     background-image: url('D:\Web Development\React Websites\creselle\src\images\check-out-box-img-three.jpeg');
   }
-}
+} */
 
 
 .box-texts{
