@@ -4,9 +4,6 @@ import logo from '../images/logo.png';
 import bannerBtnOne from '../images/banner-btn-one.png';
 import bannerBtnTwo from '../images/banner-btn-two.png';
 import bannerBtnThree from '../images/banner-btn-three.png';
-import offerImgOne from '../images/offer-card-one.jpg'
-import offerImgTwo from '../images/offer-card-two.jpg'
-import offerImgThree from '../images/offer-card-three.jpg'
 
 function Home() {
     const [bannerImg, setBannerImg] = useState(bannerBtnOne);
@@ -65,91 +62,10 @@ function Home() {
                 <div className="design-card top-right-card position-absolute"></div>
                 <div className="bottom-left-card position-absolute"></div>
                 {/* banner ends here */}
-
-                {/* offer section starts from here */}
-                <div className="offer-section d-flex flex-column align-items-center">
-                    <p style={{ fontFamily: 'Josefin Sans, serif', fontSize: '24px' }}>Offers</p>
-                    <p style={{ fontFamily: 'Judson, serif', fontSize: '48px' }}>Get your offers and coupons now</p>
-                    {/* the cards starts from here */}
-                    <div className="offer-cards d-flex justify-content-between">
-                        <div className='offer-card' id="card-one">
-                            <img src={offerImgOne} alt="" />
-                            <div className="card-design-card">
-                                <p>Get 30% off on purchase of every product</p>
-                            </div>
-                        </div>
-                        <div className='offer-card' id="card-two">
-                            <img src={offerImgTwo} alt="" />
-                            <div className="card-design-card"></div>
-                        </div>
-                        <div className='offer-card' id="card-three">
-                            <img src={offerImgThree} alt="" />
-                            <div className="card-design-card"></div>
-                        </div>
-                    </div>
                 </div>
-                {/* offer section ends here */}
-
-            </div>
-            {/* transformed offer section comes from here */}
-            {/* <div className="transformed-section d-flex flex-column">
-                <div className="first-section-outer bg-dark">
-                    <div className="first-section   text-light">
-                        <span>Saree</span>
-                        <span>Kurti</span>
-                        <span>Lahenga</span>
-                        <span>Salwar Kameez</span>
-                        <span>Anarkali Suits</span>
-                        <span>Frocks</span>
-                        <span>Choli</span>
-                    </div>
-                </div>
-                <div className="second-section-outer">
-                    <div className="second-section">
-                        <span>10% off on all saree</span>
-                        <span>30% cashback on every purchases</span>
-                        <span>15% additional off on IDFC Credit Card</span>
-                    </div>
-                </div>
-            </div>
-            */}
-            {/* about and categories section starts from here */}
-            <div className="categories-section container-fluid px-4">
-                    <div className="upper-container d-flex justify-content-between">
-                        <div className="check-out-box bg-dark position-relative box-shadows">
-                            
-                            <div className=' box-texts d-flex flex-column '>
-                                <h2 className='box-header'>Welcome to Creselle shop now from our varied categories</h2>
-                                <p>Discover Tradition, Shop by Essence – Your Journey Through India's Heritage Begins Here. Uncover handpicked treasures crafted with authenticity and passion.</p>
-                                <button className='purchase-btn border p-2'>Check Out Shop</button>
-                            </div>
-                        </div>
-                        <div className="support-box d-flex flex-column justify-content-between">
-                            <div className="number-one bg-dark box-shadows">
-                                <p>Shop fancy sarees</p>
-                            </div>
-                            <div className="number-two bg-dark box-shadows">
-                                <p>Shop Lahenga's</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="lower-container d-flex justify-content-between mt-5">
-                        <div className="about-section">
-                            <h1>About Creselle - Who Are We?</h1>
-                            <p>Creslle brings India’s rich heritage to you with authentic, artisan-made products. Celebrate timeless craftsmanship and culture through our curated, quality collection.</p>
-                        </div>
-                        <div className="support-box d-flex justify-content-between" style={{width:'75%'}}>
-                            <div className="number-one number-three bg-dark box-shadows mx-2">
-                                <p>Shop Kurti's</p>
-                            </div>
-                            <div className="number-two number-four bg-dark box-shadows mx-2">
-                                <p>Shop Indo-Weestern Gowns</p>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </>
-    );
+                </>
+    )
 }
-
 export default Home;
+
+                
