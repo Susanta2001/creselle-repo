@@ -116,10 +116,10 @@ function Home() {
                             <p>Creslle brings India’s rich heritage to you with authentic, artisan-made products. Celebrate timeless craftsmanship and culture through our curated, quality collection.</p>
                         </div>
                         <div className="support-box d-flex justify-content-between" style={{ width: '75%' }}>
-                            <div className="number-one number-three bg-dark box-shadows mx-2">
+                            <div className="number-three bg-dark box-shadows mx-2">
                                 <p>Shop Kurti's</p>
                             </div>
-                            <div className="number-two number-four bg-dark box-shadows mx-2">
+                            <div className="number-four bg-dark box-shadows mx-2">
                                 <p>Shop Indo-Weestern Gowns</p>
                             </div>
                         </div>

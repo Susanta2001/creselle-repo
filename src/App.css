@@ -240,6 +240,22 @@ body{
 .check-out-box{
   width: 60%;
   border-radius: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: image-slide 10s linear infinite;
+}
+
+@keyframes image-slide {
+  0%{
+    background-image: url('/public/pub-img/pub-img-one.jpeg');
+  }
+  50%{
+    background-image: url('/public/pub-img/pub-img-two.jpeg');
+  }
+  100%{
+    background-image: url('/public/pub-img/pub-img-three.jpeg');
+  }
 }
 .support-box{
   width: 39%;
@@ -250,7 +266,7 @@ body{
   border-radius: 40px;
 }
 .number-one{
-  /* background-image: url('D:\Web Development\React Websites\creselle\src\images\first-box-img.jpg'); */
+  background-image: url('../public//pub-img/pub-img-four.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
