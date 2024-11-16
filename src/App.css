@@ -165,14 +165,13 @@ body{
 }
 /* offer cards starts from here */
 .offer-cards{
-  border: 1px solid black;
   width: 100%;
   height: 500px;
 }
 .offer-card{
   width: 30%;
   height: 440px;
-  background-color: #3d8228;
+  background-color: #d9d9d9;
   border-radius: 40px;
   position: relative;
 }
@@ -201,7 +200,6 @@ body{
   width: 50px;
   height: 30px;
   display: block;
-  /* border: 1px solid blueviolet; */
   position: absolute;
   background-color: transparent;
   right: 4px;
@@ -209,4 +207,18 @@ body{
   transform: translate(100%, 0%);
   border-bottom-left-radius: 40px;
   box-shadow: -15px 15px 0 15px #ffff;
+}
+.offer-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 40px;
+}
+.offer-card p{
+  position: absolute;
+  top: 390px;
+  z-index: 9999;
+  font-family: "Baskervville", serif;
+  font-size: 22px;
+  width: 80%;
 }

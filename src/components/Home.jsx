@@ -4,6 +4,9 @@ import logo from '../images/logo.png';
 import bannerBtnOne from '../images/banner-btn-one.png';
 import bannerBtnTwo from '../images/banner-btn-two.png';
 import bannerBtnThree from '../images/banner-btn-three.png';
+import offerOne from '../images/offer-card-one.jpg'
+import offerTwo from '../images/offer-card-two.jpg'
+import offerThree from '../images/offer-card-three.jpg'
 
 function Home() {
     const [bannerImg, setBannerImg] = useState(bannerBtnOne);
@@ -68,17 +71,20 @@ function Home() {
                     <p style={{ fontFamily: 'Josefin Sans, serif', fontSize: '24px' }}>Offers</p>
                     <p style={{ fontFamily: 'Judson, serif', fontSize: '48px' }}>Get your offers and coupons now</p>
                     {/* the cards starts from here */}
-                    <div className="offer-cards d-flex justify-content-between">
+                    <div className="offer-cards d-flex justify-content-between" style={{marginTop:'4rem'}}>
                         <div className='offer-card' id="card-one">
-                            {/* <img src="" alt="" /> */}
+                            <img src={offerOne} alt="" />
+                            <p>Get 30% discount on all products</p>
                             <div className="card-design-card"></div>
                         </div>
                         <div className='offer-card' id="card-two">
-                            {/* <img src="" alt="" /> */}
+                            <img src={offerTwo} alt="" />
+                            <p>Get 30% discount on all products</p>
                             <div className="card-design-card"></div>
                         </div>
                         <div className='offer-card' id="card-three">
-                            {/* <img src="" alt="" /> */}
+                            <img src={offerThree} alt="" />
+                            <p>Get 30% discount on all products</p>
                             <div className="card-design-card"></div>
                         </div>
                     </div>
