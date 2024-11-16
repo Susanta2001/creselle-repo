@@ -244,7 +244,6 @@ body{
 .first-section span{
   font-size: 20px;
   padding: 8px 32px;
-  /* border-right: 1px solid white; */
 }
 .second-section-outer{
   background-color: #3d8228;
@@ -265,10 +264,11 @@ body{
 .second-section span{
   font-size: 20px;
   padding: 0px 32px;
-  /* border-right: 1px solid white; */
   color: white;
 }
 /* offer transofrmed ends here */
+
+
 /* this is the categories and about section */
 .box-texts{
   color: white;
@@ -319,13 +319,13 @@ body{
   background-position: center;
 }
 .number-two{
-  /* background-image: url('D:\Web Development\React Websites\creselle\src\images\second-box-img.jpg'); */
+  background-image: url('../public//pub-img/pub-img-five.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 .number-three{
-  /* background-image: url('D:\Web Development\React Websites\creselle\src\images\third-box-img.jpg'); */
+  background-image: url('../public//pub-img/pub-img-six.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -333,7 +333,7 @@ body{
   align-items: end;
 }
 .number-four{
-  /* background-image: url('D:\Web Development\React Websites\creselle\src\images\fourth-box-img.jpg'); */
+  background-image: url('../public//pub-img/pub-img-seven.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
