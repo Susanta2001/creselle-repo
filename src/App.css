@@ -167,5 +167,46 @@ body{
 .offer-cards{
   border: 1px solid black;
   width: 100%;
-  height: 600px;
+  height: 500px;
+}
+.offer-card{
+  width: 30%;
+  height: 440px;
+  background-color: #3d8228;
+  border-radius: 40px;
+  position: relative;
+}
+.card-design-card{
+  width: 70%;
+  height: 50px;
+  display: block;
+  background-color: white;
+  border-top-right-radius: 40px;
+  position: absolute;
+  bottom: 0%;
+}
+.card-design-card::after{
+  content: '';
+  width: 50px;
+  height: 30px;
+  display: block;
+  background-color: transparent;
+  position: absolute;
+  bottom: 100%;
+  border-bottom-left-radius: 40px;
+  box-shadow: -15px 15px 0 15px #ffff;
+}
+.card-design-card::before{
+  content: '';
+  width: 50px;
+  height: 30px;
+  display: block;
+  /* border: 1px solid blueviolet; */
+  position: absolute;
+  background-color: transparent;
+  right: 4px;
+  bottom: 0;
+  transform: translate(100%, 0%);
+  border-bottom-left-radius: 40px;
+  box-shadow: -15px 15px 0 15px #ffff;
 }
