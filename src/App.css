@@ -385,3 +385,18 @@ body{
   font-size: 21px;
   line-height: 30px;
 }
+/* trending edits starts from here */
+#trending-word{
+  font-size: 48px;
+  font-family: "Fjord One", serif;
+}
+.categories p{
+  font-family: "Fjord One", serif;
+  font-size: 24px;
+}
+.categories-active{
+  text-decoration: underline;
+}
+.categories p:hover{
+  text-decoration: underline;
+}

@@ -148,6 +148,25 @@ function Home() {
                         </div>
                     </div>
                 </div>
+                {/* about and categories section ends here */}
+
+                {/* trending section starts from here */}
+                <div className="container-fluid p-4">
+                    <div className="upper-container w-100">
+                        <div className="d-flex justify-content-between align-items-center">
+                        <p className='w-50' id='trending-word'>Trending</p>
+                        <div className="categories w-50 d-flex align-items-center justify-content-between">
+                            <p className='categories-active'>Saree</p>
+                            <p>Kurti</p>
+                            <p>Salwar</p>
+                            <p>Lahenga</p>
+                            <p>Pajamas</p>
+                            <p>Gowns</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="lower-container"></div>
+                </div>
         </>
     )
 }
