@@ -68,7 +68,7 @@ function Home() {
                 </div>
 
                 {/* offer section starts from here */}
-                <div className="offer-section d-flex flex-column align-items-center container-fluid p-4" style={{ marginTop: '5rem' }}>
+                <div className="offer-section d-flex flex-column align-items-center container-fluid p-4" style={{ marginTop: '4rem' }}>
                     <p style={{ fontFamily: 'Josefin Sans, serif', fontSize: '24px' }}>Offers</p>
                     <p style={{ fontFamily: 'Judson, serif', fontSize: '48px' }}>Get your offers and coupons now</p>
                     {/* the cards starts from here */}
@@ -94,7 +94,7 @@ function Home() {
                 {/* transformed offer section comes from here */}
             <div className="transformed-section d-flex flex-column">
                     <div className="first-section-outer bg-dark">
-                        <div className="first-section d-flex justify-content-between align-items-center text-light">
+                        <div className="first-section d-flex  align-items-center text-light">
                             <span>Saree</span>
                             <span>Kurti</span>
                             <span>Lahenga</span>
@@ -148,8 +148,6 @@ function Home() {
                         </div>
                     </div>
                 </div>
-          
-            
         </>
     )
 }

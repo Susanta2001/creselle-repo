@@ -1,3 +1,24 @@
+/* this is for preloader */
+/* Preloader.css */
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f3f3;
+  transition: 2s ease-out;
+}
+.loader-gif {
+  width: 100%; /* Adjust size as needed */
+  height: 100%;
+}
+.preloader-gif{
+  position: absolute;
+  height: 100%;
+  z-index: 9999;
+}
+
+/* preloader content ends here */
 body{
   overflow-x: hidden;
 }
@@ -230,7 +251,7 @@ body{
 } 
 .first-section{
   width: 100%;
-  padding: 0px 12px;
+  padding: 8px 0px;
   animation: scroll-animation 20s linear infinite;
 }
 @keyframes scroll-animation {
@@ -242,15 +263,17 @@ body{
   }
 }
 .first-section span{
-  font-size: 20px;
-  padding: 8px 32px;
+  font-family: "Italiana", serif;
+  font-size: 22px;
+  padding: 8px 40px;
+  border-right: 1px solid white;
 }
 .second-section-outer{
   background-color: #3d8228;
 }
 .second-section{
   width: 100%;
-  padding: 8px 12px;
+  padding: 12px 0px;
   animation: scroll-animation-two 20s reverse linear infinite;
 }
 @keyframes scroll-animation-two {
@@ -262,11 +285,13 @@ body{
   }
 }
 .second-section span{
-  font-size: 20px;
+  font-family: "Italiana", serif;
+  font-size: 22px;
   padding: 0px 32px;
   color: white;
+  border-right: 1px solid white;
 }
-/* offer transofrmed ends here */
+/* offer transformed ends here */
 
 
 /* this is the categories and about section */
@@ -313,19 +338,19 @@ body{
   border-radius: 40px;
 }
 .number-one{
-  background-image: url('../public//pub-img/pub-img-four.jpg');
+  background-image: url('../public/pub-img/pub-img-four.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 .number-two{
-  background-image: url('../public//pub-img/pub-img-five.jpg');
+  background-image: url('../public/pub-img/pub-img-five.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 .number-three{
-  background-image: url('../public//pub-img/pub-img-six.jpg');
+  background-image: url('../public/pub-img/pub-img-six.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -333,7 +358,7 @@ body{
   align-items: end;
 }
 .number-four{
-  background-image: url('../public//pub-img/pub-img-seven.jpg');
+  background-image: url('../public/pub-img/pub-img-seven.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
