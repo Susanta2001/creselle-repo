@@ -62,10 +62,31 @@ function Home() {
                 <div className="design-card top-right-card position-absolute"></div>
                 <div className="bottom-left-card position-absolute"></div>
                 {/* banner ends here */}
+
+                 {/* offer section starts from here */}
+                 <div className="offer-section d-flex flex-column align-items-center">
+                    <p style={{ fontFamily: 'Josefin Sans, serif', fontSize: '24px' }}>Offers</p>
+                    <p style={{ fontFamily: 'Judson, serif', fontSize: '48px' }}>Get your offers and coupons now</p>
+                    {/* the cards starts from here */}
+                    <div className="offer-cards d-flex justify-content-between">
+                        <div className='offer-card' id="card-one">
+                            <img src="" alt="" />
+                            <div className="card-design-card"></div>
+                        </div>
+                        <div className='offer-card' id="card-two">
+                            <img src="" alt="" />
+                            <div className="card-design-card"></div>
+                        </div>
+                        <div className='offer-card' id="card-three">
+                            <img src="" alt="" />
+                            <div className="card-design-card"></div>
+                        </div>
+                    </div>
                 </div>
-                </>
+                {/* offer section ends here */}
+            </div>
+        </>
     )
 }
 export default Home;
 
-                
