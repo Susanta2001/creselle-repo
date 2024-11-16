@@ -222,6 +222,53 @@ body{
   font-size: 22px;
   width: 80%;
 }
+/* transformed section ends starts from here */
+.transformed-section{
+  margin: 5rem 0rem;
+  width: 100%;
+  transform: rotate(-2deg);
+} 
+.first-section{
+  width: 100%;
+  padding: 0px 12px;
+  animation: scroll-animation 20s linear infinite;
+}
+@keyframes scroll-animation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.first-section span{
+  font-size: 20px;
+  padding: 8px 32px;
+  /* border-right: 1px solid white; */
+}
+.second-section-outer{
+  background-color: #3d8228;
+}
+.second-section{
+  width: 100%;
+  padding: 8px 12px;
+  animation: scroll-animation-two 20s reverse linear infinite;
+}
+@keyframes scroll-animation-two {
+  0%{
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.second-section span{
+  font-size: 20px;
+  padding: 0px 32px;
+  /* border-right: 1px solid white; */
+  color: white;
+}
+/* offer transofrmed ends here */
 /* this is the categories and about section */
 .box-texts{
   color: white;

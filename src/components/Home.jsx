@@ -65,9 +65,10 @@ function Home() {
                 <div className="design-card top-right-card position-absolute"></div>
                 <div className="bottom-left-card position-absolute"></div>
                 {/* banner ends here */}
+                </div>
 
                 {/* offer section starts from here */}
-                <div className="offer-section d-flex flex-column align-items-center" style={{ marginTop: '5rem' }}>
+                <div className="offer-section d-flex flex-column align-items-center container-fluid p-4" style={{ marginTop: '5rem' }}>
                     <p style={{ fontFamily: 'Josefin Sans, serif', fontSize: '24px' }}>Offers</p>
                     <p style={{ fontFamily: 'Judson, serif', fontSize: '48px' }}>Get your offers and coupons now</p>
                     {/* the cards starts from here */}
@@ -90,8 +91,30 @@ function Home() {
                     </div>
                 </div>
                 {/* offer section ends here */}
+                {/* transformed offer section comes from here */}
+            <div className="transformed-section d-flex flex-column">
+                    <div className="first-section-outer bg-dark">
+                        <div className="first-section d-flex justify-content-between align-items-center text-light">
+                            <span>Saree</span>
+                            <span>Kurti</span>
+                            <span>Lahenga</span>
+                            <span>Salwar Kameez</span>
+                            <span>Anarkali Suits</span>
+                            <span>Frocks</span>
+                            <span>Choli</span>
+                        </div>
+                    </div>
+                    <div className="second-section-outer">
+                        <div className="second-section">
+                            <span>10% off on all saree</span>
+                            <span>30% cashback on every purchases</span>
+                            <span>15% additional off on IDFC Credit Card</span>
+                        </div>
+                    </div>
+                </div>
+
                 {/* about and categories section starts from here */}
-                <div className="categories-section container-fluid">
+                <div className="categories-section container-fluid p-4">
                     <div className="upper-container d-flex justify-content-between">
                         <div className="check-out-box bg-dark position-relative box-shadows">
 
@@ -125,8 +148,9 @@ function Home() {
                         </div>
                     </div>
                 </div>
-            </div>
-            </>
+          
+            
+        </>
     )
 }
 export default Home
