@@ -2,9 +2,12 @@ import './App.css';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer'
+import ProductPage from '../src/components/Product-page'
+import Store from '../src/components/Store'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Preloader from './components/Preloader';
 import { useEffect, useState } from 'react';
+import { ProductProvider } from './context/ProductContext';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,15 +32,34 @@ function App() {
         </>
       ),
     },
+    {
+      path:'/addProduct',
+      element:(
+        <>
+        <ProductPage/>
+        <Footer/>
+        </>
+      )
+    },
+    {
+      path:'/store',
+      element:(
+        <>
+        <Store/>
+        </>
+      )
+    }
   ]);
 
   return (
     <>
+    <ProductProvider>
       {isLoading ? (
         <Preloader /> // Show Preloader while loading
       ) : (
         <RouterProvider router={router} />
       )}
+      </ProductProvider>
     </>
   );
 }

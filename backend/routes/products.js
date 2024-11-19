@@ -39,4 +39,23 @@ router.post(
   }
 );
 
+// ROUTE - 2: API to fetch products and display them
+router.get('/allProducts', async (req, res) => {
+  try {
+    // Fetch all products from the database
+    const products = await Product.find();
+
+    // If no products are found
+    if (products.length === 0) {
+      return res.status(404).json({ message: 'No products found' });
+    }
+
+    // Send the products as a response
+    res.json({ products });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 module.exports = router;
