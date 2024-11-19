@@ -24,7 +24,10 @@ body{
 }
 /* utility class */
 .box-shadows{
-  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 1);
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 1);
+}
+.box-shadows-two{
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 1);
 }
 .banner-outer{
   height: 500px;
@@ -399,4 +402,66 @@ body{
 }
 .categories p:hover{
   text-decoration: underline;
+}
+.trending-section{
+  gap: 20px;
+}
+.shop-text{
+  font-family: 'Fjord One', serif;
+  font-size: 24px;
+}
+.shop-latest-text{
+  font-family: "Italiana", serif;
+  font-size: 48px;
+}
+.card{
+  background-color: transparent;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.card img{
+  width: 400px;
+  height:400px;
+  border-top-left-radius: 80px;
+  border-bottom-right-radius: 80px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.card-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-text, .card-price{
+  font-family: "Fjord", serif;
+  font-size: 18px;
+  text-align: center;
+}
+.buttons-div{
+  font-size: 30px;
+  cursor: pointer;
+}
+/* this is for footer */
+.footer-container a{
+  color: black;
+  font-family: 'Baskervville', serif;
+  text-decoration: none;
+}
+.footer-container i{
+  font-size: 28px;
+  margin: 0px 12px;
+}
+.footer-container:hover{
+  cursor: pointer;
+}
+.footer-container h5{
+  margin-bottom: 2rem;
+}
+.footer-hero-p{
+  font-family: "Fjord", serif;
 }

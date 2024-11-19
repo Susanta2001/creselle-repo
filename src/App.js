@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Preloader from './components/Preloader';
 import { useEffect, useState } from 'react';
@@ -24,6 +25,7 @@ function App() {
         <>
           <Navbar />
           <Home />
+          <Footer/>
         </>
       ),
     },

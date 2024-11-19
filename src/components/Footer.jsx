@@ -3,32 +3,32 @@ import React from 'react'
 function Footer() {
   return (
     <>
-      <div className="container-fluid footer-container p-4" style={{backgroundColor:"#d9d9d9"}}>
+      <div className="container-fluid footer-container p-4" style={{backgroundColor:"#d9d9d9", marginTop:'4rem'}}>
         {/* row starts from here */}
             <div className="row h-100">
                 {/* this is the first column */}
                 <div className="col-lg-2 col-md-2 col-sm-4 d-flex flex-column justify-content-center h-100">
                     <h2 className='text-right'>CRESELLE</h2>
-                    <p>We offer you fashion which will make you say, "Oh Wow"</p>
+                    <p className='footer-hero-p'>We offer you fashion which will make you say, "Oh Wow"</p>
                 </div>
                 {/* this is the second column */}
                 <div className="col-lg-2 col-md-2 col-sm-4 d-flex flex-column align-items-start">
-                    <h5>Bags</h5>
+                    <h5>Varieties</h5>
                     <ul className='list-unstyled d-flex flex-column justify-content-between h-100'>
-                        <li><a href="/">Tote Bags</a></li>
-                        <li><a href="/">Backpacks</a></li>
-                        <li><a href="/">Crossbody Bags</a></li>
-                        <li><a href="/">Laptop Bags</a></li>
-                        <li><a href="/">Duffle Bags</a></li>
-                        <li><a href="/">Shoulder Bags</a></li>
+                        <li><a href="/">Saree</a></li>
+                        <li><a href="/">Lahenga</a></li>
+                        <li><a href="/">Kurti</a></li>
+                        <li><a href="/">Choli Ghagra</a></li>
+                        <li><a href="/">Salwar Kameez</a></li>
+                        <li><a href="/">Chunni / Duppata</a></li>
                     </ul>
                 </div>
                 {/* this is the third column */}
                 <div className="col-lg-2 col-md-2 col-sm-4">
-                <h5>Accessories</h5>
+                <h5>Additional</h5>
                     <ul className='list-unstyled d-flex flex-column'>
-                        <li><a href="/">Bottle Tux & Coasters</a></li>
-                        <li><a href="/">Wallet</a></li>
+                        <li><a href="/">Blouse</a></li>
+                        <li><a href="/">Nets</a></li>
                         
                     </ul>
                 </div>
@@ -78,7 +78,7 @@ function Footer() {
                 </div>
                 <div className="col-lg-6 col-md-6 col-sm-6"></div>
             </div>
-            <div className="text-center pt-3">All rights reserved by Creselle 2024</div>
+            <div className="text-center pt-3">All rights reserved by Creselle 2024 | Developed by SRT Global Solutions</div>
       </div>
     </>
   )
