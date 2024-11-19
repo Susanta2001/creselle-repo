@@ -187,6 +187,10 @@ body{
   color: white;
   border-radius: 50px;
 }
+.purchase-btn:hover{
+  background-color: #3d8228;
+  
+}
 /* offer cards starts from here */
 .offer-cards{
   width: 100%;

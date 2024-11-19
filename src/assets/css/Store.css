@@ -1,0 +1,35 @@
+.buy-now-btn{
+    color: black;
+    width: max-content;
+    border:1px solid black;
+    outline: none;
+    padding: 4px 18px;
+}
+.buy-now-btn:hover{
+    cursor: pointer;
+    background-color: green;
+    border: 1px solid white;
+    color: white;
+}
+.price-div{
+    width: 100%;
+    gap: 24px;
+}
+.price-div p{
+    margin: auto 0px;
+}
+h1{
+    font-family: "Fjord", serif;
+    font-size: 48px;
+}
+#banner-outer{
+    background-repeat: none !important;
+    background-size: contain !important;
+    background-position: center;
+}
+
+.store-head-text{
+    font-family: "Fjord", serif;
+    color: white;
+    font-size: 48px;
+}

@@ -45,7 +45,9 @@ function App() {
       path:'/store',
       element:(
         <>
+        <Navbar/>
         <Store/>
+        <Footer/>
         </>
       )
     }
