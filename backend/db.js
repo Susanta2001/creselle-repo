@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb://localhost:27017/creselle'; // Replace with your actual database name
+const mongoURI = 'mongodb+srv://creselle:creselle25@cluster.3ypb3.mongodb.net/'; // Replace with your actual database name
 
 const connectToMongo = async () => {
   try {

@@ -6,7 +6,8 @@ const ProductPage = () => {
   const [productData, setProductData] = useState({
     title: '',
     description: '',
-    price: ''
+    price: '',
+    category: ''
   });
 
   const handleChange = (e) => {
@@ -21,7 +22,7 @@ const ProductPage = () => {
     e.preventDefault();
     // Validate product data here before submitting (or rely on API validation)
     addProduct(productData);
-    setProductData({ title: '', description: '', price: '' }); // Reset form after submit
+    setProductData({ title: '', description: '', price: '', category:'' }); // Reset form after submit
   };
 
   return (
@@ -50,6 +51,13 @@ const ProductPage = () => {
           onChange={handleChange}
           placeholder="Price"
         />
+        <input
+          type="text"
+          name="category"
+          value={productData.category}
+          onChange={handleChange}
+          placeholder="Category"
+        />
         <button type="submit">Add Product</button>
       </form>
 
@@ -60,6 +68,7 @@ const ProductPage = () => {
             <h3>{product.title}</h3>
             <p>{product.description}</p>
             <p>${product.price}</p>
+            <p>${product.category}</p>
           </li>
         ))}
       </ul>

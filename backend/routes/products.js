@@ -19,14 +19,15 @@ router.post(
     }
 
     // Destructure fields from request body
-    const { title, description, price } = req.body;
+    const { title, description, price, category } = req.body;
 
     try {
       // Create new product instance
       const newProduct = new Product({
         title,
         description,
-        price
+        price,
+        category
       });
 
       // Save product to the database
@@ -45,7 +46,7 @@ router.get('/allProducts', async (req, res) => {
     // Fetch all products from the database
     const products = await Product.find();
 
-    // If no products are found
+    // If no products are found d3dx9_26.dll
     if (products.length === 0) {
       return res.status(404).json({ message: 'No products found' });
     }
@@ -57,5 +58,23 @@ router.get('/allProducts', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+// RPUTE -3 : API Endpoint to fetch products using categories
+
+router.get('/category/:category', async (req, res) => {
+  const { category } = req.params;
+
+  try {
+      const products = await Product.find({ category });
+      if (products.length === 0) {
+          return res.status(404).json({ message: 'No products found for this category' });
+      }
+      res.json({ products });
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 
 module.exports = router;

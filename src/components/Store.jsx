@@ -92,15 +92,8 @@ const Store = () => {
                 {/* Category Buttons */}
                 <div className="categories px-4 mb-4">
                     {categories.map(category => (
-                        <button
-                        key={category}
-                            className={`btn me-2 ${
-                                selectedCategory === category ? 'btn-primary' : 'btn-outline-primary'
-                            }`}
-                            onClick={() => setSelectedCategory(category)}
-                            >
-                            {category}
-                        </button>
+                        <button key={category} className={`btn me-2 ${selectedCategory === category ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setSelectedCategory(category)}>{category}</button>
                     ))}
                 </div>
                     <h1 className="px-4">Store Products</h1>
