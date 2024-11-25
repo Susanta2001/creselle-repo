@@ -7,24 +7,29 @@ const ProductProvider = ({ children }) => {
     // State for storing all products
     const [allProducts, setAllProducts] = useState([]);
 
-    // Function to add a product
+    // Function to add a product with an image
     const addProduct = async (productData) => {
         try {
+            const formData = new FormData();
+            formData.append('title', productData.title);
+            formData.append('description', productData.description);
+            formData.append('price', productData.price);
+            formData.append('category', productData.category);
+            if (productData.image) {
+                formData.append('image', productData.image); // Include the image file
+            }
+
             const response = await fetch('http://localhost:5000/api/products', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(productData),
+                body: formData, // Send FormData instead of JSON
             });
-            
+
             if (!response.ok) {
                 throw new Error('Failed to save product');
             }
 
             const data = await response.json();
             setAllProducts((prevProducts) => [...prevProducts, data.product]); // Add new product to state
-
         } catch (error) {
             console.error('Error adding product:', error);
         }
@@ -40,7 +45,7 @@ const ProductProvider = ({ children }) => {
                 throw new Error('Failed to fetch products');
             }
             const json = await response.json();
-            setAllProducts(json.products);  // Update state with the fetched products
+            setAllProducts(json.products); // Update state with the fetched products
         } catch (error) {
             console.error('Error fetching products:', error);
         }
@@ -59,9 +64,6 @@ const ProductProvider = ({ children }) => {
             return []; // Return an empty array in case of an error
         }
     };
-    
-
-    
 
     return (
         <ProductContext.Provider value={{ allProducts, addProduct, getProducts, fetchProductsByCategory }}>

@@ -1,3 +1,25 @@
+.trending-area{
+        height: auto !important;
+}
 .trending-product-card{
-        border: 1px solid black;
+        width: 30%;
+        height: 370px;
+}
+.trending-title{
+        font-family: "Fjord", serif !important;
+        font-size: 48px;
+}
+.p-title{
+        font-family: "Baskervville", serif;
+        font-family: 18px;
+}
+.p-price{
+        font-family: "Fjord", serif;
+        font-family: 18px;
+}
+.trending-product-card img{
+        width: 100%;
+        height: 90%;
+        object-fit: cover;
+        object-position: center center;
 }
