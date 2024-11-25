@@ -43,7 +43,7 @@ function Trending() {
                         .slice(0, 3) // Take the first 3 after reversing
                         .map((element, index) => (
                             <div key={index} className="trending-product-card p-2">
-                                <img src={`http://localhost:5000/${element.image}`} alt="product" />
+                                <img src={`http://localhost:5000/${element.images[0]}`} alt="product" />
                                 <p className="p-title">{element.title}</p>
                                 <p className="p-price">{element.price}</p>
                             </div>

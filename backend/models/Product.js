@@ -19,7 +19,11 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
-    image: {
+    images: [{ // Array of image paths
+        type: String,
+        required: true
+    }],
+    mainImage: { // Reference to the main image
         type: String,
         required: true
     }

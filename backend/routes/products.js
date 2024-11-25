@@ -17,10 +17,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Route 1: Add products to the database with an image
+// Route 1: Add products to the database with multiple images
 router.post(
   '/',
-  upload.single('image'), // Middleware to handle image upload
+  upload.array('images', 5), // Handle up to 5 image uploads
   [
     body('title', 'Title is required').notEmpty(),
     body('description', 'Description should be at least 10 characters long').isLength({ min: 10 }),
@@ -37,10 +37,14 @@ router.post(
     const { title, description, price, category } = req.body;
 
     try {
-      // Check if an image file is uploaded
-      if (!req.file) {
-        return res.status(400).json({ error: 'Image file is required' });
+      // Check if image files are uploaded
+      if (!req.files || req.files.length === 0) {
+        return res.status(400).json({ error: 'At least one image is required' });
       }
+
+      // Choose the first uploaded image as the main image
+      const images = req.files.map(file => file.path);
+      const mainImage = images[0]; // First image will be the main image
 
       // Create new product instance
       const newProduct = new Product({
@@ -48,7 +52,8 @@ router.post(
         description,
         price,
         category,
-        image: req.file.path, // Save the file path of the uploaded image
+        images, // Store all image paths
+        mainImage, // Store the main image path
       });
 
       // Save product to the database
@@ -60,6 +65,8 @@ router.post(
     }
   }
 );
+
+module.exports = router;
 
 // Route 2: Fetch all products from the database
 router.get('/allProducts', async (req, res) => {

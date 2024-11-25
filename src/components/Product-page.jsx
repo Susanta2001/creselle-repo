@@ -8,7 +8,7 @@ const ProductPage = () => {
         description: '',
         price: '',
         category: '',
-        image: null, // Add image state
+        images: [], // Change image state to handle multiple files
     });
 
     const handleChange = (e) => {
@@ -20,14 +20,14 @@ const ProductPage = () => {
     };
 
     const handleFileChange = (e) => {
-        setProductData({ ...productData, image: e.target.files[0] }); // Store selected file
+        setProductData({ ...productData, images: Array.from(e.target.files) }); // Store multiple files as an array
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Validate product data here before submitting (or rely on API validation)
         await addProduct(productData);
-        setProductData({ title: '', description: '', price: '', category: '', image: null }); // Reset form after submit
+        setProductData({ title: '', description: '', price: '', category: '', image: [] }); // Reset form after submit
     };
 
     return (
@@ -66,8 +66,9 @@ const ProductPage = () => {
                 <input
                     type="file"
                     name="image"
-                    onChange={handleFileChange} // Capture file input
+                    onChange={handleFileChange} // Capture multiple files
                     accept="image/*"
+                    multiple // Allow multiple image selection
                 />
                 <button type="submit">Add Product</button>
             </form>
@@ -80,7 +81,14 @@ const ProductPage = () => {
                         <p>{product.description}</p>
                         <p>INR{product.price}</p>
                         <p>Category: {product.category}</p>
-                        {product.image && <img src={`http://localhost:5000/${product.image}`} alt={product.title} width="100" />}
+                        {product.images && product.images.map((img, index) => (
+                            <img
+                                key={index}
+                                src={`http://localhost:5000/${img}`}
+                                alt={`${product.title} ${index + 1}`}
+                                width="100"
+                            />
+                        ))}
                     </li>
                 ))}
             </ul>

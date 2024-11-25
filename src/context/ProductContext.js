@@ -15,9 +15,11 @@ const ProductProvider = ({ children }) => {
             formData.append('description', productData.description);
             formData.append('price', productData.price);
             formData.append('category', productData.category);
-            if (productData.image) {
-                formData.append('image', productData.image); // Include the image file
-            }
+            if (productData.images) {
+                for (let i = 0; i < productData.images.length; i++) {
+                  formData.append('images', productData.images[i]); // Send all images
+                }
+              }
 
             const response = await fetch('http://localhost:5000/api/products', {
                 method: 'POST',
