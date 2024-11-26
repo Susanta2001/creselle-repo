@@ -8,6 +8,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Preloader from './components/Preloader';
 import { useEffect, useState } from 'react';
 import { ProductProvider } from './context/ProductContext';
+import Signin from '../src/components/Signin';
+import Login from '../src/components/Login';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +50,22 @@ function App() {
         <Navbar/>
         <Store/>
         <Footer/>
+        </>
+      )
+    },
+    {
+      path:'/signin',
+      element:(
+        <>
+        <Signin/>
+        </>
+      )
+    },
+    {
+      path:'/login',
+      element:(
+        <>
+        <Login/>
         </>
       )
     }

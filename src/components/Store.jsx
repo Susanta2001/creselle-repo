@@ -112,7 +112,7 @@ const Store = () => {
                             >
                                 <div className="product-card card">
                                     <img
-                                        src={product.image || ''}
+                                        src={`http://localhost:5000/${product.images[0]}`}
                                         alt={product.title}
                                         className="rounded-0"
                                         style={{ backgroundColor: '#d9d9d9' }}

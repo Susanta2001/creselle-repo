@@ -189,7 +189,7 @@ function Home() {
                         latestProducts.map((product, index) => (
                             <div className="card col-lg-4 col-md-4 col-sm-12" key={index}>
                                 <img
-                                    src={`http://localhost:5000/${product.image}`}
+                                    src={`http://localhost:5000/${product.images}`}
                                     className="card-img-top box-shadows-two"
                                     alt={product.name}
                                     loading="lazy"

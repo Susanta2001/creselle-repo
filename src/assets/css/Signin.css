@@ -1,0 +1,55 @@
+.sign-in-main{
+    height: 100vh;  
+  }
+  .sign-in-inner{  
+    width: 420px;
+    height: 572px;
+    margin-left: 60px;
+    padding: 25px;
+    gap: 25px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+  }
+  .sign-in-main a{
+    text-decoration: none;
+    color: white;
+  }
+  .sign-in-inner input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid white;
+    gap: 10px;
+    background: transparent;
+    align-items:center;
+    
+    }
+  .sign-in-inner p{
+    margin-top: 15px;  
+  }
+  #signinB{
+    padding: 10px 28px;
+    background-color: transparent;
+    color: white;  
+    outline: none;
+    border: 1px solid white;
+  }
+  #signinB:hover{
+    background-color: black;
+    border: 1px solid transparent;
+  }
+  .sl-user, .sl-email, .sl-password{
+    color: white;
+  }
+  .sign-in-main{
+    background-image: url('/public/pub-img/login-bg-image.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .rememberMe input{
+    margin-right: 8px !important;
+  }
+  .sign-in-main input{
+    color: white;
+  }

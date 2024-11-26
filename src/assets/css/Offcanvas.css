@@ -1,0 +1,22 @@
+.user-page-link{
+    text-decoration: none;
+    font-family: "Baskervville", serif;
+    outline: none;
+    border: none;
+    transition: transform 0.3s ease-in-out;
+    color: white;
+}
+.offcanvas-body button{
+    outline: none;
+    border: none;
+}
+.offcanvas-body button:hover{
+    outline: none;
+    border: none;
+    background-color: green !important;
+}
+.offcanvas-body button:active{
+    outline: none;
+    border: none;
+    background-color: green !important;
+}
