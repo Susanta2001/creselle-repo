@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../assets/css/Signin.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext'; // Import UserContext
 
-function Sign() {
+function SignIn() {
   const [credentials, setCredentials] = useState({ name: '', email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { createUser } = useContext(UserContext); // Access createUser from UserContext
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,23 +19,16 @@ function Sign() {
     setErrorMessage('');
     setIsLoading(true);
 
+    const { name, email, password } = credentials;
+
     try {
-      const response = await fetch('http://localhost:5000/api/auth/createuser', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      });
+      const result = await createUser(name, email, password);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // On successful sign-in, redirect to the login page
+      if (result.success) {
         alert('Account created successfully!');
         navigate('/login');
       } else {
-        setErrorMessage(data.error || 'Something went wrong!');
+        setErrorMessage(result.error || 'Something went wrong!');
       }
     } catch (error) {
       console.error('Error creating user:', error);
@@ -82,6 +77,7 @@ function Sign() {
           />
           <button id="signinB" type="submit" disabled={isLoading}>
             {isLoading ? 'Signing In...' : 'Sign In'}
+            
           </button>
         </form>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
@@ -90,4 +86,4 @@ function Sign() {
   );
 }
 
-export default Sign;
+export default SignIn;

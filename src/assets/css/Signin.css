@@ -6,7 +6,7 @@
     height: 572px;
     margin-left: 60px;
     padding: 25px;
-    gap: 25px;
+    gap: 12px;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
@@ -28,6 +28,7 @@
     margin-top: 15px;  
   }
   #signinB{
+    margin-top: 44px;
     padding: 10px 28px;
     background-color: transparent;
     color: white;  

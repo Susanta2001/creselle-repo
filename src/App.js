@@ -8,8 +8,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Preloader from './components/Preloader';
 import { useEffect, useState } from 'react';
 import { ProductProvider } from './context/ProductContext';
+import {UserProvider} from './context/UserContext';
 import Signin from '../src/components/Signin';
 import Login from '../src/components/Login';
+import ProductTemplate from './components/ProductTemplate';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -68,11 +70,23 @@ function App() {
         <Login/>
         </>
       )
-    }
+    },
+    {
+      path: '/:id',
+      element:(
+        <>
+        <Navbar/>
+        <ProductTemplate/>
+        <Footer/>
+        </>
+      )
+    } 
   ]);
 
   return (
     <>
+    <UserProvider>
+
     <ProductProvider>
       {isLoading ? (
         <Preloader /> // Show Preloader while loading
@@ -80,6 +94,7 @@ function App() {
         <RouterProvider router={router} />
       )}
       </ProductProvider>
+      </UserProvider>
     </>
   );
 }

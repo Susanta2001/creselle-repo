@@ -1,0 +1,129 @@
+.innerone{
+    width: 168px;
+    /* height: 157px; */
+    gap: 33px;
+  }
+  .innertwo{
+    width: 485px;
+    height: 537px;
+  }
+  .tempinner{
+    gap: 30px;
+  }
+  .innerthree{
+    margin-left: 50px;
+  }
+  .offers{
+    margin-left: 70px;
+  }
+  .size p{
+    border: 10px solid black;
+    color: black !important;
+    border-radius: 50% ;
+  }
+  .sizes p{
+    padding: 8px;
+    margin: 0px 4px 0px 0px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #d9d9d9;
+  }
+  .quantity-div-inner{
+    height: 40px;
+    width: 80px;
+  }
+  .quantity-div-inner p{
+    margin: auto 0px;
+  }
+  #addtocart{
+    width: 100%;
+    height: 44px; 
+    border: none; 
+    background-color: green;
+  } 
+  #buynow{
+    width: 100%;
+    height: 44px;
+    border: none;
+    background-color: black;
+  }
+  .tempmain{
+    margin-top: 7rem;
+  }
+  .innerthree{
+    /* border: 1px solid black; */
+    height: max-content;
+    gap: 6px;
+  }
+  #addtocart a, #buynow a{
+    text-decoration: none;
+    color: white;
+  }
+  #addtocart:hover{
+    cursor: pointer;
+    background-color: black;
+  }
+  #buynow:hover{
+    background-color: green;
+  }
+  .pro-details{
+    width: 75%;
+  }
+  .innerCard{
+    height: 30%;
+    width: 100%;
+    
+  }
+  .innerCard img{
+    height: 270px;
+    width: 300px;
+    background-color: #d9d9d9;
+  }
+  
+  .reviews-left-headers{
+    width: max-content;
+  }
+  .ret-desc {
+    padding:32px 0px;
+    border: 1px solid black;
+  }
+  .f-lheader{
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    margin: 0;
+    padding: 2px 18px 0px 18px;
+  }
+  #reviews a{
+   text-decoration: none;
+   color: #000;
+  }
+  #reviews{
+    border: none;
+    background-color: transparent;
+  }
+  
+  #Write-R{
+    padding: 6px 12px;
+    color:white;
+    background-color: #000;
+    border: none;
+  }
+  .reviews-main{
+    margin-top: 7rem;
+  }
+  
+  .reviews-main-inner{
+    gap:30px;
+  }
+  .reviews-two i{
+    color: yellow;
+  }
+  .r-one i{
+    color: yellow;
+  }
+  .offer-one i{
+    color: yellow;
+  }

@@ -20,3 +20,6 @@
     border: none;
     background-color: green !important;
 }
+.offcanvas-header h3{
+    font-family: "Julius Sans One", serif;
+}

@@ -108,13 +108,13 @@ router.post('/login',[
 
 // route -3 : Login required. Get logged in users details http://localhost:5000/api/auth/getuser
 
-router.post('/getuser', fetchuser, async (req, res) => {
+router.get('/getuser', fetchuser, async (req, res) => {
     let success = false;
     try {
         const userId = req.user.id;
         const user = await User.findById(userId).select('-password')
         success = true;
-        res.send(user);
+        res.json(user);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal server error");

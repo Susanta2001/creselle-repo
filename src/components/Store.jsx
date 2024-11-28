@@ -1,5 +1,6 @@
 import '../assets/css/Store.css';
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ProductContext } from '../context/ProductContext';
 import logo from '../images/logo.png';
 import Offcanvas from './Offcanvas';
@@ -105,6 +106,7 @@ const Store = () => {
                     ) : (
                         // Map through filteredProducts if it's a valid array
                         filteredProducts.map(product => (
+                            // <Link to={`/${product._id}`}>
                             <div
                                 key={product._id}
                                 className="col-lg-4 col-md-3 col-sm-12"
@@ -122,11 +124,12 @@ const Store = () => {
                                         <p>{product.description}</p>
                                         <div className="price-div d-flex justify-content-center align-items-center">
                                             <p>Price: ${product.price}</p>
-                                            <button className="purchase-btn buy-now-btn">Buy Now</button>
+                                            <Link to={`/${product._id}`} className="purchase-btn buy-now-btn text-decoration-none">Buy Now</Link>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            // </Link>
                         ))
                     )}
                 </div>
