@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ProductContext } from '../../context/ProductContext';
 import '../../assets/css/Trending.css';
+import {Link} from 'react-router-dom'
 
 function Trending() {
     const { fetchProductsByCategory } = useContext(ProductContext); // Access only the required context function
@@ -22,7 +23,7 @@ function Trending() {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     return (
-        <div className="d-flex flex-column trending-area p-4" style={{ background: '#d9d9d9' }}>
+        <div className="d-flex flex-column trending-area p-4" style={{ background: '#d9d9d9', height:'auto' }}>
             <h2 className="trending-title">Trending</h2>
             <div className="options d-flex align-self-end">
                 <p className="mx-3" onClick={() => fetchCategoryProducts('Saree')}>
@@ -35,7 +36,7 @@ function Trending() {
                     Jeans
                 </p>
             </div>
-            <div className="d-flex">
+            <div className="d-flex pb-5">
                 {categoryProducts.length > 0 ? (
                     categoryProducts
                         .slice()
@@ -45,7 +46,10 @@ function Trending() {
                             <div key={index} className="trending-product-card p-2">
                                 <img src={`http://localhost:5000/${element.images[0]}`} alt="product" />
                                 <p className="p-title">{element.title}</p>
-                                <p className="p-price">{element.price}</p>
+                                <div className="d-flex justify-content-between align-items-center">
+                                <p className="p-price m-0">INR {element.price}</p>
+                                <Link to={`/${element._id}`} className='text-decoration-none buy-now-btn purchase-btn'>Buy Now</Link>
+                                </div>
                             </div>
                         ))
                 ) : (
