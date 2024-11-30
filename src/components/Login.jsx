@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -9,6 +9,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [rememberMe, setRememberMe] = useState(false);
+  const location = useLocation();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -38,7 +39,7 @@ function Login() {
           sessionStorage.setItem('token', result.authToken);
         }
 
-        navigate('/');
+        navigate(location.state?.from || '/default-page');
       } else {
         setErrorMessage(result.error || 'Something went wrong!');
       }

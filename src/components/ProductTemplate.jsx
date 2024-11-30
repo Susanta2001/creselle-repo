@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/css/ProductTemplate.css'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 
 function ProductTemplate() {
     const { id } = useParams(); // Get product ID from URL
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [relatedProducts, setRelatedProducts] = useState([]);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         // Fetch current product
@@ -52,6 +54,41 @@ function ProductTemplate() {
     if (!product) {
         return <p>Product not found!</p>;
     }
+
+    // function to handle add to cart function
+    const handleAddToCart = async () => {
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    
+        if (!token) {
+            // Redirect to login with current location
+            navigate('/login', { state: { from: location } });
+            return;
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:5000/api/cart/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': token,
+                },
+                body: JSON.stringify({ productId: id, quantity: 1 }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to add product to cart');
+            }
+            
+            // Show success feedback (e.g., a toast or modal)
+            alert('Product added to cart!');
+            navigate('/addToCart');
+        } catch (error) {
+            console.error("Error adding product to cart", error);
+            // Show error feedback
+            alert('Failed to add product to cart');
+        }
+    };
+    
 
     return (
         <>
@@ -129,11 +166,11 @@ function ProductTemplate() {
                     </div>
                     {/* product headers end here */}
                     <div className='actionb mt-1'>
-                        <button id='addtocart' className='mb-1'>
-                            <a href="/">Add to cart</a>
+                        <button id='addtocart' className='mb-1' onClick={handleAddToCart}>
+                            Add to Cart
                         </button>
                         <button id='buynow' className='mb-1'>
-                            <a href="/">Buy Now</a>
+                            Buy Now
                         </button>
                     </div>
                 </div>

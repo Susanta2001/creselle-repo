@@ -191,12 +191,12 @@ function Home() {
                                 <img
                                     src={`http://localhost:5000/${product.images}`}
                                     className="card-img-top box-shadows-two"
-                                    alt={product.name}
+                                    alt={product.title}
                                     loading="lazy"
                                 />
                                 <div className="card-body">
                                     <p className="card-text">
-                                        {product.name} | {product.description}
+                                        {product.title} | {product.description}
                                     </p>
                                     <p className="card-price">INR {product.price}</p>
                                 </div>

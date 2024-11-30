@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../assets/css/Offcanvas.css';
-import { UserContext } from '../context/UserContext'; // Import UserContext
+import { UserContext } from '../context/UserContext'; 
 
 function Offcanvas() {
   const location = useLocation();

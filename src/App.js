@@ -12,6 +12,7 @@ import {UserProvider} from './context/UserContext';
 import Signin from '../src/components/Signin';
 import Login from '../src/components/Login';
 import ProductTemplate from './components/ProductTemplate';
+import AddToCart from './components/AddToCart';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +52,6 @@ function App() {
         <>
         <Navbar/>
         <Store/>
-        <Footer/>
         </>
       )
     },
@@ -78,6 +78,16 @@ function App() {
         <Navbar/>
         <ProductTemplate/>
         <Footer/>
+        </>
+      )
+    },
+    {
+      path:'/addToCart',
+      element:(
+        <>
+          <Navbar/>
+          <AddToCart/>
+          <Footer/>
         </>
       )
     } 
