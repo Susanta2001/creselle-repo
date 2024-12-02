@@ -9,6 +9,7 @@ import Preloader from './components/Preloader';
 import { useEffect, useState } from 'react';
 import { ProductProvider } from './context/ProductContext';
 import {UserProvider} from './context/UserContext';
+import {CartProvider} from './context/CartContext'
 import Signin from '../src/components/Signin';
 import Login from '../src/components/Login';
 import ProductTemplate from './components/ProductTemplate';
@@ -96,7 +97,7 @@ function App() {
   return (
     <>
     <UserProvider>
-
+    <CartProvider>
     <ProductProvider>
       {isLoading ? (
         <Preloader /> // Show Preloader while loading
@@ -104,6 +105,7 @@ function App() {
         <RouterProvider router={router} />
       )}
       </ProductProvider>
+      </CartProvider>
       </UserProvider>
     </>
   );

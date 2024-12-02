@@ -32,3 +32,13 @@
     border: none;
     background: none;
 }
+.item-quantity p:last-of-type:hover{
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+.item-quantity p:first-of-type:hover{
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}

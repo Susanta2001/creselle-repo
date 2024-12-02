@@ -35,6 +35,7 @@ function Login() {
         // Save token based on "Remember Me"
         if (rememberMe) {
           localStorage.setItem('token', result.authToken);
+          console.log("Logged in", localStorage.getItem('token'))
         } else {
           sessionStorage.setItem('token', result.authToken);
         }

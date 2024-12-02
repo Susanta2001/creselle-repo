@@ -1,22 +1,37 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../assets/css/AddToCart.css'
+import { CartContext } from '../context/CartContext';
 function Cart() {
 
     const [quantity, setQuantity] = useState(1);
     const [total, setTotal] = useState(1000);
+    const {allCartProducts, getCartProducts,updateProductQuantity, removeProductFromCart} = useContext(CartContext);
+
+    // use effect to run the getCartProducts function right after the page loads
+    useEffect(() => {
+        getCartProducts();
+    }, []);
 
 
     // function to handle quantity increment and decrement
-    const handleIncrement = () => {
+    const handleIncrement = (productId, currentQuantity) => {
         setQuantity(quantity + 1);
         setTotal(total + 1000);
+        updateProductQuantity(productId, currentQuantity + 1);
     }
-    const handleDecrement = () => {
+    const handleDecrement = (productId, currentQuantity) => {
         if (quantity > 1) {
             setQuantity(quantity - 1); //when quantity is more than 0
             setTotal(total - 1000);
+            updateProductQuantity(productId, currentQuantity - 1);
+        } else {
+            removeProductFromCart(productId); // Remove if quantity becomes 0
         }
     }
+
+    const handleDelete = (productId) => {
+        removeProductFromCart(productId);
+    };
 
 
     return (
@@ -25,37 +40,42 @@ function Cart() {
                 <h2>YOUR CART</h2>
             </div>
             <div className='p-4'>
-                <div className='prod-headers d-flex align-items-center' style={{ backgroundColor: '#C7B8B8' }}>
+                <div className='prod-headers d-flex align-items-center justify-content-between' style={{ backgroundColor: '#C7B8B8' }}>
                     <p className='prod'>PRODUCT</p>
                     <p className='pri'>PRICE</p>
                     <p className='quan'>QUANTITY</p>
                     <p className='subt'>SUBTOTAL</p>
                 </div>
                 <div className='prod-main py-3' style={{ backgroundColor: '#d9d9d9' }}>
-                    <div className='prod-main-inner d-flex p-2' style={{ borderBottom: '1px solid black' }}>
+                    {allCartProducts.map((item, index) => (
+
+                    
+                    <div className='prod-main-inner d-flex p-2' key={item._id}  style={{ borderBottom: '1px solid black' }}>
                         {/* this is for the first div */}
                         <div className='prod-inner-div d-flex justify-content-center align-items-center' id='prod-div-inner-one' style={{ width: '40%', borderRight: '1px solid black' }}>
-                            <img src='' alt="..." />
-                            <p id='prod-title' className='mx-2'>YELLOW SAREE</p>
+                            <img src={`http://localhost:5000/${item.product.mainImage}`} alt="..." />
+
+                            <p id='prod-title' className='mx-2' style={{maxWidth: '8%'}}>{item.product.title}</p>
                         </div>
                         {/* this is for the second div */}
                         <div className='prod-inner-div d-flex justify-content-center align-items-center' id='prod-div-inner-two' style={{ width: '20%', borderRight: '1px solid black' }}>
-                            <p id='prod-price'>INR 2.999</p>
+                            <p id='prod-price'>{item.product.price}</p>
                         </div>
                         {/* this is for the third div */}
                         <div className='prod-inner-div d-flex justify-content-center align-items-center' id='prod-div-inner-three' style={{ borderRight: '1px solid black' }}>
-                            <i class='bx bxs-trash'></i>
+                            <i className='bx bxs-trash' onClick={() => handleDelete(item.product._id)}></i>
                             <div className='item-quantity d-flex justify-content-between'>
-                                <p onClick={handleDecrement}>-</p>
-                                <p>{quantity}</p>
-                                <p onClick={handleIncrement}>+</p>
+                                <p onClick={() => handleDecrement(item.product._id, item.quantity)}>-</p>
+                                <p>{item.quantity}</p>
+                                <p onClick={() => handleIncrement(item.product._id, item.quantity)}>+</p>
                             </div>
                         </div>
                         {/* this is for the fourth div */}
                         <div className='prod-inner-div d-flex justify-content-center align-items-center' id='prod-div-inner-four' style={{ width: '20%'}}>
-                            <p id='price-total' style={{ margin: 'auto' }}>{total}</p>
+                            <p id='price-total' style={{ margin: 'auto' }}>{item.product.price * item.quantity}</p>
                         </div>
                     </div>
+                    ))}
                 </div>
                 {/* this is for price details */}
                 <h5 style={{ display: 'block', color: '#295719', backgroundColor: '#d9d9d9',margin:'0',paddingBottom:'25px',paddingLeft:'15px'}}>Price Details:</h5>
@@ -82,7 +102,7 @@ function Cart() {
                     <h2>Continue Shopping For</h2>
                     <div className='secondmain-inner d-flex justify-content-between'>
                         <div className='innerCard'>
-                            <img src='' href alt='/'></img>
+                            <img src='' alt='/'></img>
                             <p>
                                 Cotton Saree at minimal cost than you can even imagine.
                             </p>

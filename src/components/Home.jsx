@@ -8,12 +8,14 @@ import offerOne from '../images/offer-card-one.jpg'
 import offerTwo from '../images/offer-card-two.jpg'
 import offerThree from '../images/offer-card-three.jpg'
 import { ProductContext } from '../context/ProductContext'
+import { UserContext } from '../context/UserContext'
 import Trending from './home/Trending';
 
 function Home() {
     const [bannerImg, setBannerImg] = useState(bannerBtnOne);
     const [bgColor, setBgColor] = useState('radial-gradient(circle, #d9d9d9 0%, #3d8228 60%)');
     const [fadeClass, setFadeClass] = useState('');
+    const {user} = useContext(UserContext)
 
     const bannerChange = (newBannerImg, color) => {
         setFadeClass('fade-out');
@@ -93,7 +95,7 @@ function Home() {
 
             {/* offer section starts from here */}
             <div className="offer-section d-flex flex-column align-items-center container-fluid p-4" style={{ marginTop: '4rem' }}>
-                <p style={{ fontFamily: 'Josefin Sans, serif', fontSize: '24px' }}>Offers</p>
+                <p style={{ fontFamily: 'Josefin Sans, serif', fontSize: '24px' }}>Hii!! {user?.name || 'Offers'}</p>
                 <p style={{ fontFamily: 'Judson, serif', fontSize: '48px' }}>Get your offers and coupons now</p>
                 {/* the cards starts from here */}
                 <div className="offer-cards d-flex justify-content-between" style={{ marginTop: '4rem' }}>
