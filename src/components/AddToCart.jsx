@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import '../assets/css/AddToCart.css'
 import { CartContext } from '../context/CartContext';
+import '../assets/css/AddToCart.css'
 function Cart() {
 
-    
     const {allCartProducts, getCartProducts,updateProductQuantity, removeProductFromCart} = useContext(CartContext);
 
     // use effect to run the getCartProducts function right after the page loads
@@ -28,7 +27,12 @@ function Cart() {
         removeProductFromCart(productId);
     };
 
-
+    // Calculate the order total
+    const calculateOrderTotal = () => {
+        return allCartProducts.reduce((total, item) => {
+            return total + item.product.price * item.quantity;
+        }, 0);
+    };
     return (
         <>
             <div>
@@ -78,13 +82,11 @@ function Cart() {
                     
                     <div className='item-total-left' style={{ width: '60%' }}>
                         <p style={{paddingLeft:'15px',borderBottom:'1px solid black'}}>Delivery Charges:</p>
-                        <p style={{paddingLeft:'15px',borderBottom:'1px solid black'}}>Shipping Charges:</p>
                         <h4 style={{paddingLeft:'15px'}}>Order Total :</h4>
                     </div>
                     <div className='item-total-mid' style={{ width: '20%', borderRight: '1px solid black' }}>
                         <p style={{ color: '#295719',borderBottom:'1px solid black' }}>FREE DELIVERY</p>
-                        <p style={{ color: '#295719',borderBottom:'1px solid black' }}>199</p>
-                        <p style={{ color: '#295719'}}>4,800</p>
+                        <p style={{ color: '#295719'}}>{calculateOrderTotal()}</p>
                     </div>
                     <div className='item-total-right d-flex justify-content-center align-items-end' style={{ width: '20%'}}>
                         <button id='checkout' style={{height:'51px'}}>

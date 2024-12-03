@@ -93,153 +93,140 @@ function ProductTemplate() {
     return (
         <>
             {/* dip's code starts from here */}
-            <div className='tempmain container d-flex justify-content-around'>
-                <div className='tempinner d-flex justify-content-around align-items-center'>
-                    <div className='innerone d-flex flex-column'>
-                        {product.images.slice(1, 4).map((img, index) => (
+            {/* main div starts from here */}
+            <div className='product-div d-flex p-4 mt-5'>
+                {/* left div beginning*/}
+                <div className='left-main d-flex'>
+                    <div className='left-main-inner-one d-flex flex-column'>
+                    {product.images.slice(1, 4).map((img, index) => (
                             <img
                                 key={index}
                                 src={`http://localhost:5000/${img}`}
                                 alt={`Product ${index + 1}`}
                                 style={{ width: '168px', height: '157px' }}
                             />
-                        ))} </div>
-                    <div className='innertwo'>
-                        <img src={`http://localhost:5000/${product.mainImage}`} alt="..." style={{ width: '487px', height: '537px' }} />
+                        ))}
+                    </div>
+                    <div className='left-main-inner-two'>
+                        <img src={`http://localhost:5000/${product.mainImage}`} alt='img -4' />
                     </div>
                 </div>
-                <div className='innerthree d-flex align-self-center flex-column'>
-                    <h1>{product.title}</h1>
-                    <p>INR {product.price}</p>
-                    <p>Inclusive of all taxes</p>
-                    {/* offer section starts from here */}
-                    <div className='offers w-75'>
-                        <div className='offer-one d-flex align-items-center'>
-                            <i className='bx bxs-offer mx-2'></i><p>
-                                Get this for INR 98
-                                Flat 10% Off your first purchase. Download the app and use
-                                Code: APP10
-                            </p>
-                        </div>
-                        <div className='offer-one d-flex align-items-center'>
-                            <i className='bx bxs-offer mx-2'></i><p>
-                                Get this for INR 989
-                                Flat 10% Off your first purchase. Download the app and use
-                                Code: APP10
-                            </p>
-                        </div>
-                        <div className='offer-one d-flex align-items-center'>
-                            <i className='bx bxs-offer mx-2'></i><p>
-                                Get this for INR 989
-                                Flat 10% Off your first purchase. Download the app and use
-                                Code: APP10
-                            </p>
-                        </div>
+                {/* right div beginning */}
+                <div className='right-main d-flex flex-column justify-content-between'>
+                    <h2>{product.title}</h2>
+                    <div className='right-main-inner-one' style={{ marginLeft: '5%' }}>
+                        <p>INR {product.price}</p>
+                        <p>Inclusive of all taxes</p>
                     </div>
-                    {/* offer section ends her */}
-
-                    {/* product headers starts from here */}
-                    <div className='main-product-headers d-flex justify-content-between'>
-                        <div className='size-div'>
-                            <p>Select a size</p>
-                            <div className='sizes d-flex justify-content-between'>
+                    <div className='right-main-inner-two' style={{ marginLeft: '20%' }}>
+                        <p><i className='bx bxs-offer mx-2'></i>Get this for INR 989
+                            Flat 10% Off your first purchase. Download the app and use
+                            Code: APP10</p>
+                        <p><i className='bx bxs-offer mx-2'></i>Get this for INR 989
+                            Flat 10% Off your first purchase. Download the app and use
+                            Code: APP10</p>
+                        <p><i className='bx bxs-offer mx-2'></i>Get this for INR 989
+                            Flat 10% Off your first purchase. Download the app and use
+                            Code: APP10</p>
+                    </div>
+                    <div className='right-main-inner-three d-flex justify-content-between  align-items-center'>
+                        <div style={{ width: '30%' }} className=''><p>Select a size</p>
+                            <div className='right-main-inner-three-one d-flex justify-content-between' style={{ width: '80%' }}>
                                 <p>S</p>
                                 <p>M</p>
                                 <p>L</p>
                                 <p>XL</p>
                             </div>
                         </div>
-                        <div className='quanitity-div' >
+                        <div className='right-main-inner-three-two align-items-center' style={{ width: '30%' }}>
                             <p>Quanitity</p>
-                            <div className='quantity-div-inner d-flex justify-content-between align-items-center'>
+                            <div className='right-main-inner-three-three d-flex justify-content-between align-items-center' style={{ width: '50%' }}>
                                 <p>-</p>
                                 <p>0</p>
                                 <p>+</p>
                             </div>
                         </div>
-                        <div className='total-div d-flex flex-column'>
+                        <div className='right-main-inner-three-four d-flex flex-column align-items-center' style={{ width: '30%' }}>
                             <p>Total</p>
                             <div>
                                 INR 1,299
                             </div>
                         </div>
                     </div>
-                    {/* product headers end here */}
-                    <div className='actionb mt-1'>
-                        <button id='addtocart' className='mb-1' onClick={handleAddToCart}>
-                            Add to Cart
+                    <div className='right-main-inner-four d-flex flex-column text-light'>
+                        <button id='add-to-cart' className='text-light' style={{ backgroundColor: 'green', border: 'none', marginBottom: '2px' }} onClick={handleAddToCart}>
+                            Add to cart
                         </button>
-                        <button id='buynow' className='mb-1'>
+                        <button id='buy-now' className='text-light' style={{ backgroundColor: 'black', border: 'none' }}>
                             Buy Now
                         </button>
                     </div>
                 </div>
+                {/* half page completion */}
             </div>
-            <div className='reviews-main container w-100 d-flex justify-content-between flex column'>
-                <div className='d-flex reviews-main-inner flex-column w-50'>
-                    <div className='reviews-left w-100 d-flex flex-column'>
-                        <div className='reviews-left-headers d-flex'>
-                            <h6 className='f-lheader '>Returns</h6>
-                            <h6 className='ps-3 pt-1'>Our Promise</h6>
-                        </div>
-                        <p className='ret-desc ps-2' style={{ border: '1px solid black' }}>7 day Return and Exchange <a href="/">click here.</a></p>
-                    </div>
-                    <div className='reviews-two'>
-                        <h6>Reviews and Ratings</h6>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <button id='reviews'>
-                            <a href="/">(39 reviews)</a>
-                        </button>
-                    </div>
-                    <div className='d-flex justify-content-between'>
-                        <div className='l-one d-flex flex-column text-center'>
-                            <h2>4.1</h2>
-                            <p>420 customers</p>
-                        </div>
-                        <div className='r-one d-flex flex-column text-center'>
-                            <div>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                            </div>
-                            <button id='Write-R'>WRITE A REVIEW</button>
-                        </div>
-                    </div>
-                </div>
-                <div className='reviews-right w-50' style={{ marginLeft: '11rem' }}>
-                    <div>
-                        <h3>Product Description</h3>
-                        <p>{product.description}</p>
-                    </div>
-                    <div className='pro-details'>
-                        <div>
-                            <h3>Product Details</h3>
-                        </div>
-                        <div className='pro-contents d-flex justify-content-between'>
-                            <div>
-                                <p>Material Composition</p>
-                                <p>Weave Type</p>
-                                <p>Included Components</p>
-                                <p>Product Manufacturer</p>
-                            </div>
-                            <div>
-                                <p>Silk</p>
-                                <p>Jacquard Type</p>
-                                <p>With blouse piece</p>
-                                <p>Leemboodi Fashion</p>
-                            </div>
-                        </div>
-                    </div>
+            <div className='lower-main d-flex' style={{ gap: '15px' }}>
+                {/* left div beginning */}
+                <div className='lower-main-left justify-content-end d-flex flex-column' style={{ paddingLeft: '15%' }} >
 
+                    <div className='lower-main-left-headers d-flex flex-column  mt-5' style={{ width: '100%' }}>
+                        <div className='d-flex'>
+                            <p style={{ border: '1px solid black', margin: '0px' }}>Returns</p>
+                            <p style={{ margin: '0px', paddingLeft: '1%', paddingTop: '2px' }}>Our Promise</p>
+                        </div>
+                        <div>
+                            <p style={{ border: '1px solid black', padding: '5%' }}>7 day Return and Exchange <a href="/" style={{ textDecoration: 'none' }}>click here.</a></p>
+                        </div>
+                    </div>
+                    <div className='lower-main-left-bottom'>
+                        <div className='lower-main-left-bottom-up mt-5'>
+                            <div><p>Reviews and Ratings</p></div>
+                            <div>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <button id='reviews'>
+                                    <a href="/">(39 reviews)</a>
+                                </button>  </div>
+                        </div>
+                        <div className='lower-main-left-bottom-down d-flex justify-content-between'>
+                            <div className='lower-main-left-bottom-down-left'>
+                                <h1>4.1</h1>
+                                <p>420 Customers</p>
+                            </div>
+                            <div className='d-flex align-items-center flex-column'> <div className='lower-main-left-bottom-down-right'>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                                <button id='Write-R'>WRITE A REVIEW</button></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            {/* half page completion */}
+                {/* right div beginning */}
+                <div className='lower-main-right'>
+                    <h5 style={{ marginTop: '10%' }}>Product Description</h5>
+                    <p>{product.description}</p>
+                    <h5>Product Details</h5>
+                    <div className='d-flex justify-content-between'>
+                        <div>
+                            <p>Material Composition</p>
+                            <p>Weave Type</p>
+                            <p>Included Components</p>
+                            <p>Product Manufacturer</p>
+                        </div>
+                        <div>
+                            <p>Silk</p>
+                            <p>Jacquard Type</p>
+                            <p>With blouse piece</p>
+                            <p>Leemboodi Fashion</p>
+                        </div>
+                    </div>
+                </div>
+            </div >
             {/* You May Also Like Section */}
             <div className='secondmain px-4' style={{ marginTop: '7rem' }}>
                 <h1 className='mt-5'>You May Also Like</h1>
