@@ -8,6 +8,7 @@ const ProductPage = () => {
         description: '',
         price: '',
         category: '',
+        quantity:'',
         images: [], // Change image state to handle multiple files
     });
 
@@ -27,7 +28,7 @@ const ProductPage = () => {
         e.preventDefault();
         // Validate product data here before submitting (or rely on API validation)
         await addProduct(productData);
-        setProductData({ title: '', description: '', price: '', category: '', image: [] }); // Reset form after submit
+        setProductData({ title: '', description: '', price: '', category: '',quantity:'', image: [] }); // Reset form after submit
     };
 
     return (
@@ -64,6 +65,13 @@ const ProductPage = () => {
                     placeholder="Category"
                 />
                 <input
+                    type="number"
+                    name="quantity"
+                    value={productData.quantity}
+                    onChange={handleChange}
+                    placeholder="Quantity"
+                />
+                <input
                     type="file"
                     name="image"
                     onChange={handleFileChange} // Capture multiple files
@@ -81,6 +89,7 @@ const ProductPage = () => {
                         <p>{product.description}</p>
                         <p>INR{product.price}</p>
                         <p>Category: {product.category}</p>
+                        <p>Available Product{product.quantity}</p>
                         {product.images && product.images.map((img, index) => (
                             <img
                                 key={index}

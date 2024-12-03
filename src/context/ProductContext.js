@@ -15,6 +15,7 @@ const ProductProvider = ({ children }) => {
             formData.append('description', productData.description);
             formData.append('price', productData.price);
             formData.append('category', productData.category);
+            formData.append('quantity', productData.quantity);
             if (productData.images) {
                 for (let i = 0; i < productData.images.length; i++) {
                   formData.append('images', productData.images[i]); // Send all images

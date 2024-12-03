@@ -25,6 +25,8 @@ router.post(
     body('title', 'Title is required').notEmpty(),
     body('description', 'Description should be at least 10 characters long').isLength({ min: 10 }),
     body('price', 'Price must be a number').isNumeric(),
+    body('quantity', 'Price must be a number').isNumeric(),
+    
   ],
   async (req, res) => {
     // Validate incoming request
@@ -34,7 +36,7 @@ router.post(
     }
 
     // Destructure fields from request body
-    const { title, description, price, category } = req.body;
+    const { title, description, price, category, quantity } = req.body;
 
     try {
       // Check if image files are uploaded
@@ -52,6 +54,7 @@ router.post(
         description,
         price,
         category,
+        quantity,
         images, // Store all image paths
         mainImage, // Store the main image path
       });

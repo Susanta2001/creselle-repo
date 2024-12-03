@@ -19,6 +19,10 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
+    quantity: {
+        type: Number,
+        required: true
+    },
     images: [{ // Array of image paths
         type: String,
         required: true

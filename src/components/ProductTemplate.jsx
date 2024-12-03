@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../assets/css/ProductTemplate.css'
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 function ProductTemplate() {
     const { id } = useParams(); // Get product ID from URL
@@ -9,6 +10,13 @@ function ProductTemplate() {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+
+    const { allCartProducts, getCartProducts, updateProductQuantity, removeProductFromCart } = useContext(CartContext);
+
+    // use effect to run the getCartProducts function right after the page loads
+    useEffect(() => {
+        getCartProducts();
+    }, []);
 
     useEffect(() => {
         // Fetch current product
@@ -55,16 +63,35 @@ function ProductTemplate() {
         return <p>Product not found!</p>;
     }
 
+    // function to handle quantity increment and decrement
+    const handleIncrement = (productId, currentQuantity) => {
+        updateProductQuantity(productId, currentQuantity + 1);
+    }
+    const handleDecrement = (productId, currentQuantity) => {
+        if (currentQuantity > 1) {
+            updateProductQuantity(productId, currentQuantity - 1);
+        } else {
+            removeProductFromCart(productId); // Remove if quantity becomes 0
+        }
+    }
+
+    // Calculate the order total
+    const calculateOrderTotal = () => {
+        return allCartProducts.reduce((total, item) => {
+            return total + item.product.price * item.quantity;
+        }, 0);
+    };
+
     // function to handle add to cart function
     const handleAddToCart = async () => {
         const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-    
+
         if (!token) {
             // Redirect to login with current location
             navigate('/login', { state: { from: location } });
             return;
         }
-    
+
         try {
             const response = await fetch(`http://localhost:5000/api/cart/add`, {
                 method: 'POST',
@@ -74,11 +101,11 @@ function ProductTemplate() {
                 },
                 body: JSON.stringify({ productId: id, quantity: 1 }),
             });
-    
+
             if (!response.ok) {
                 throw new Error('Failed to add product to cart');
             }
-            
+
             // Show success feedback (e.g., a toast or modal)
             alert('Product added to cart!');
             navigate('/addToCart');
@@ -88,7 +115,7 @@ function ProductTemplate() {
             alert('Failed to add product to cart');
         }
     };
-    
+
 
     return (
         <>
@@ -98,7 +125,7 @@ function ProductTemplate() {
                 {/* left div beginning*/}
                 <div className='left-main d-flex'>
                     <div className='left-main-inner-one d-flex flex-column'>
-                    {product.images.slice(1, 4).map((img, index) => (
+                        {product.images.slice(1, 4).map((img, index) => (
                             <img
                                 key={index}
                                 src={`http://localhost:5000/${img}`}
@@ -129,30 +156,22 @@ function ProductTemplate() {
                             Flat 10% Off your first purchase. Download the app and use
                             Code: APP10</p>
                     </div>
-                    <div className='right-main-inner-three d-flex justify-content-between  align-items-center'>
-                        <div style={{ width: '30%' }} className=''><p>Select a size</p>
-                            <div className='right-main-inner-three-one d-flex justify-content-between' style={{ width: '80%' }}>
-                                <p>S</p>
-                                <p>M</p>
-                                <p>L</p>
-                                <p>XL</p>
+                    {allCartProducts.map((item, index) => (
+                        <div className='right-main-inner-three d-flex justify-content-between  align-items-center' key={item._id}>
+                            <div className='right-main-inner-three-two align-items-center' style={{ width: '30%' }}>
+                                <p>Quanitity</p>
+                                <div className='right-main-inner-three-three d-flex justify-content-between align-items-center' style={{ width: '50%' }}>
+                                    <p onClick={() => handleDecrement(item.product._id, item.quantity)}>-</p>
+                                    <p>{item.quantity}</p>
+                                    <p onClick={() => handleIncrement(item.product._id, item.quantity)}>+</p>
+                                </div>
+                            </div>
+                            <div className='right-main-inner-three-four d-flex flex-column align-items-center' style={{ width: '30%' }}>
+                                <p>Total</p>
+                                <div>{calculateOrderTotal()}</div>
                             </div>
                         </div>
-                        <div className='right-main-inner-three-two align-items-center' style={{ width: '30%' }}>
-                            <p>Quanitity</p>
-                            <div className='right-main-inner-three-three d-flex justify-content-between align-items-center' style={{ width: '50%' }}>
-                                <p>-</p>
-                                <p>0</p>
-                                <p>+</p>
-                            </div>
-                        </div>
-                        <div className='right-main-inner-three-four d-flex flex-column align-items-center' style={{ width: '30%' }}>
-                            <p>Total</p>
-                            <div>
-                                INR 1,299
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                     <div className='right-main-inner-four d-flex flex-column text-light'>
                         <button id='add-to-cart' className='text-light' style={{ backgroundColor: 'green', border: 'none', marginBottom: '2px' }} onClick={handleAddToCart}>
                             Add to cart
@@ -230,14 +249,14 @@ function ProductTemplate() {
             {/* You May Also Like Section */}
             <div className='secondmain px-4' style={{ marginTop: '7rem' }}>
                 <h1 className='mt-5'>You May Also Like</h1>
-                <div className='secondmain-inner d-flex justify-content-between flex-wrap' style={{ width: 'max-content'}}>
+                <div className='secondmain-inner d-flex justify-content-between flex-wrap' style={{ width: 'max-content' }}>
                     {relatedProducts.length > 0 ? (
                         relatedProducts.map((relatedProduct) => (
                             <div className='innerCard d-flex flex-column justify-content-between mt-5' key={relatedProduct._id}>
                                 <img
                                     src={`http://localhost:5000/${relatedProduct.mainImage}`}
                                     alt={relatedProduct.title}
-                                    style={{ width: '200px', height: '200px'}}
+                                    style={{ width: '200px', height: '200px' }}
                                 />
                                 <p>{relatedProduct.title}</p>
                                 <div className="d-flex justify-content-between align-items-center" >
