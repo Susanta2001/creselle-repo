@@ -3,8 +3,7 @@ import '../assets/css/AddToCart.css'
 import { CartContext } from '../context/CartContext';
 function Cart() {
 
-    const [quantity, setQuantity] = useState(1);
-    const [total, setTotal] = useState(1000);
+    
     const {allCartProducts, getCartProducts,updateProductQuantity, removeProductFromCart} = useContext(CartContext);
 
     // use effect to run the getCartProducts function right after the page loads
@@ -15,14 +14,10 @@ function Cart() {
 
     // function to handle quantity increment and decrement
     const handleIncrement = (productId, currentQuantity) => {
-        setQuantity(quantity + 1);
-        setTotal(total + 1000);
         updateProductQuantity(productId, currentQuantity + 1);
     }
     const handleDecrement = (productId, currentQuantity) => {
-        if (quantity > 1) {
-            setQuantity(quantity - 1); //when quantity is more than 0
-            setTotal(total - 1000);
+        if (currentQuantity > 1) {
             updateProductQuantity(productId, currentQuantity - 1);
         } else {
             removeProductFromCart(productId); // Remove if quantity becomes 0
