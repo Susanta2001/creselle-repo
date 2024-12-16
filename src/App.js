@@ -15,7 +15,7 @@ import Signin from '../src/components/Signin';
 import Login from '../src/components/Login';
 import ProductTemplate from './components/ProductTemplate';
 import AddToCart from './components/AddToCart';
-import OrderPage from './components/OrderPage';
+import BuyNow from './components/BuyNow';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -99,7 +99,7 @@ function App() {
       element:(
         <>
           <Navbar/>
-          <OrderPage/>
+          <BuyNow/>
           <Footer/>
         </>
       )

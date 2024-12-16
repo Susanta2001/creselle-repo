@@ -9,7 +9,6 @@ function Cart() {
     // use effect to run the getCartProducts function right after the page loads
     useEffect(() => {
         getCartProducts();
-        console.log(allCartProducts);
     }, []);
 
 

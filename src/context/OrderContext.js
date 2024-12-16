@@ -1,21 +1,31 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 // Create Order Context
 const OrderContext = createContext();
 
 const OrderProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
+  const [authToken, setAuthToken] = useState(null); // To store the JWT token
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token') || sessionStorage.getItem('token');
+    if (storedToken) {
+      setAuthToken(storedToken);
+    }
+  }, []);
 
   // Function to create a new order
-  const createOrder = async ({ userId, items, totalAmount, address }) => {
+  const createOrder = async ({ items, totalAmount, address }) => {
+    if (!authToken) throw new Error('Authentication token is missing.');
     try {
       const response = await fetch('http://localhost:5000/api/order/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'auth-token': authToken,
         },
         body: JSON.stringify({
-          user: userId,
+          // user: userId,
           items,
           totalAmount,
           address,
@@ -23,7 +33,8 @@ const OrderProvider = ({ children }) => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create order.');
+        const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to create order.');
       }
 
       const data = await response.json();
@@ -38,8 +49,11 @@ const OrderProvider = ({ children }) => {
   // Function to fetch all orders for a specific user
   const getOrdersByUser = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/order/user/myorders/${userId}`, {
+      const response = await fetch(`http://localhost:5000/api/order/myorders`, {
         method: 'GET',
+        headers: {
+          "auth-token":`${authToken}`
+        }
       });
 
       if (!response.ok) {
