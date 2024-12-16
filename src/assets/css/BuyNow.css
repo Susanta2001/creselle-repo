@@ -1,0 +1,43 @@
+.main-buy-now-container{
+  margin-top: 8rem !important;
+}
+.container-left, .container-right{
+  
+  display: flex;
+}
+.container-left form{
+  width: 80%;
+  gap: 12px;
+}
+form input, textarea, select{
+  padding: 12px;
+  /* border: 1px rgba(0, 0, 0, 0.5); */
+  border-radius: 12px;
+  outline:none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+form select options{
+  color: green;
+}
+.container-right{
+  flex-direction: column;
+  gap: 12px;
+}
+.container-right div{
+  width: 80%;
+  height: 40px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  color: rgba(0, 0, 0, 0.4)
+}
+.d-code{
+  width: 80%;
+  border-radius: 12px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}

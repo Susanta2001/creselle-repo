@@ -6,6 +6,8 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null); // To store user details
   const [authToken, setAuthToken] = useState(null); // To store the JWT token
+  const [emailForVerification, setEmailForVerification] = useState(null); // To track email for verification
+
 
   const baseUrl = "http://localhost:5000/api/auth";
 
@@ -24,10 +26,10 @@ const UserProvider = ({ children }) => {
     }
   }, [authToken]);
 
-  // Create User (Signup)
-  const createUser = async (name, email, password) => {
+  // Step 1: Send verification email
+  const verifyEmail = async (name, email, password) => {
     try {
-      const response = await fetch(`${baseUrl}/createuser`, {
+      const response = await fetch(`${baseUrl}/verify-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,11 +39,33 @@ const UserProvider = ({ children }) => {
 
       const result = await response.json();
       if (response.ok) {
+        setEmailForVerification(email);
+        return { success: true, message: result.message };
+      } else {
+        return { success: false, error: result.error || result.errors };
+      }
+    } catch (error) {
+      console.error("Error verifying email:", error);
+      return { success: false, error: "Something went wrong" };
+    }
+  };
+
+  // Step 2: Verify code and create user
+  const createUser = async (email, code) => {
+    try {
+      const response = await fetch(`${baseUrl}/createuser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, code }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
         setAuthToken(result.authToken);
-        console.log("User created successfully!");
         return { success: true };
       } else {
-        console.error(result.error || result.errors);
         return { success: false, error: result.error || result.errors };
       }
     } catch (error) {
@@ -49,6 +73,7 @@ const UserProvider = ({ children }) => {
       return { success: false, error: "Something went wrong" };
     }
   };
+
 
   // Login User
   const loginUser = async (email, password) => {
@@ -110,6 +135,8 @@ const UserProvider = ({ children }) => {
       value={{
         user,
         authToken,
+        emailForVerification,
+        verifyEmail,
         createUser,
         loginUser,
         getUserDetails,

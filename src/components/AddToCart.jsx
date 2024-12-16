@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import {Link} from 'react-router-dom'
 import { CartContext } from '../context/CartContext';
 import '../assets/css/AddToCart.css'
 function Cart() {
@@ -8,6 +9,7 @@ function Cart() {
     // use effect to run the getCartProducts function right after the page loads
     useEffect(() => {
         getCartProducts();
+        console.log(allCartProducts);
     }, []);
 
 
@@ -90,50 +92,8 @@ function Cart() {
                     </div>
                     <div className='item-total-right d-flex justify-content-center align-items-end' style={{ width: '20%'}}>
                         <button id='checkout' style={{height:'51px'}}>
-                            <a href="/">Proceed to buy</a>
+                            <Link to="/order-page">Proceed to buy</Link>
                         </button>
-                    </div>
-                </div>
-                {/* above header section starts from here */}
-                <div className='secondmain px-4' style={{ marginTop: '10rem' }}>
-                    <h2>Continue Shopping For</h2>
-                    <div className='secondmain-inner d-flex justify-content-between'>
-                        <div className='innerCard'>
-                            <img src='' alt='/'></img>
-                            <p>
-                                Cotton Saree at minimal cost than you can even imagine.
-                            </p>
-                            <p>
-                                INR 2,999
-                            </p>
-                        </div>
-                        <div className='innerCard'>
-                            <img src='' href alt='/'></img>
-                            <p>
-                                Cotton Saree at minimal cost than you can even imagine.
-                            </p>
-                            <p>
-                                INR 2,999
-                            </p>
-                        </div>
-                        <div className='innerCard'>
-                            <img src='' href alt='/'></img>
-                            <p>
-                                Cotton Saree at minimal cost than you can even imagine.
-                            </p>
-                            <p>
-                                INR 2,999
-                            </p>
-                        </div>
-                        <div className='innerCard'>
-                            <img src='' href alt='/'></img>
-                            <p>
-                                Cotton Saree at minimal cost than you can even imagine.
-                            </p>
-                            <p>
-                                INR 2,999
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>

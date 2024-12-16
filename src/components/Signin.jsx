@@ -5,13 +5,36 @@ import { UserContext } from '../context/UserContext'; // Import UserContext
 
 function SignIn() {
   const [credentials, setCredentials] = useState({ name: '', email: '', password: '' });
+  const [verificationCode, setVerificationCode] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { createUser } = useContext(UserContext); // Access createUser from UserContext
+  const [isVerifying, setIsVerifying] = useState(false);
+
+  const { emailForVerification, verifyEmail, createUser } = useContext(UserContext); // Access methods from UserContext
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+    setIsLoading(true);
+
+    try {
+      const result = await verifyEmail(credentials.name, credentials.email, credentials.password);
+      if (result.success) {
+        alert(result.message);
+        setIsVerifying(true);
+      } else {
+        setErrorMessage(result.error || 'Something went wrong!');
+      }
+    } catch (error) {
+      setErrorMessage('Failed to send verification email. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -19,19 +42,16 @@ function SignIn() {
     setErrorMessage('');
     setIsLoading(true);
 
-    const { name, email, password } = credentials;
-
     try {
-      const result = await createUser(name, email, password);
+      const result = await createUser(emailForVerification, verificationCode);
 
       if (result.success) {
         alert('Account created successfully!');
         navigate('/login');
       } else {
-        setErrorMessage(result.error || 'Something went wrong!');
+        setErrorMessage(result.error || 'Invalid verification code.');
       }
     } catch (error) {
-      console.error('Error creating user:', error);
       setErrorMessage('Failed to create account. Please try again later.');
     } finally {
       setIsLoading(false);
@@ -50,36 +70,51 @@ function SignIn() {
             </Link>
           </span>
         </div>
-        <form className="d-flex flex-column" onSubmit={handleSubmit} style={{ width: '80%', alignSelf: 'center' }}>
-          <p className="sl-user">Username</p>
-          <input
-            type="text"
-            name="name"
-            value={credentials.name}
-            onChange={handleChange}
-            required
-          />
-          <p className="sl-email">Email</p>
-          <input
-            type="email"
-            name="email"
-            value={credentials.email}
-            onChange={handleChange}
-            required
-          />
-          <p className="sl-password">Password</p>
-          <input
-            type="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-            required
-          />
-          <button id="signinB" type="submit" disabled={isLoading}>
-            {isLoading ? 'Signing In...' : 'Sign In'}
-            
-          </button>
-        </form>
+        {!isVerifying ? (
+          <form className="d-flex flex-column" onSubmit={handleVerify} style={{ width: '80%', alignSelf: 'center' }}>
+            <p className="sl-user">Username</p>
+            <input
+              type="text"
+              name="name"
+              value={credentials.name}
+              onChange={handleChange}
+              required
+            />
+            <p className="sl-email">Email</p>
+            <input
+              type="email"
+              name="email"
+              value={credentials.email}
+              onChange={handleChange}
+              required
+            />
+            <p className="sl-password">Password</p>
+            <input
+              type="password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+            />
+            <button id="signinB" type="submit" disabled={isLoading}>
+              {isLoading ? 'Verifying...' : 'Send Verification Code'}
+            </button>
+          </form>
+        ) : (
+          <form className="d-flex flex-column" onSubmit={handleSubmit} style={{ width: '80%', alignSelf: 'center' }}>
+            <p className="sl-code">Verification Code</p>
+            <input
+              type="text"
+              name="code"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value)}
+              required
+            />
+            <button id="signinB" type="submit" disabled={isLoading}>
+              {isLoading ? 'Creating Account...' : 'Submit Code'}
+            </button>
+          </form>
+        )}
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div>
     </div>

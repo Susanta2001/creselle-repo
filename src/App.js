@@ -10,10 +10,12 @@ import { useEffect, useState } from 'react';
 import { ProductProvider } from './context/ProductContext';
 import {UserProvider} from './context/UserContext';
 import {CartProvider} from './context/CartContext'
+import {OrderProvider} from './context/OrderContext'
 import Signin from '../src/components/Signin';
 import Login from '../src/components/Login';
 import ProductTemplate from './components/ProductTemplate';
 import AddToCart from './components/AddToCart';
+import OrderPage from './components/OrderPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -91,6 +93,16 @@ function App() {
           <Footer/>
         </>
       )
+    }, 
+    {
+      path:'/order-page',
+      element:(
+        <>
+          <Navbar/>
+          <OrderPage/>
+          <Footer/>
+        </>
+      )
     } 
   ]);
 
@@ -99,11 +111,13 @@ function App() {
     <UserProvider>
     <CartProvider>
     <ProductProvider>
+      <OrderProvider>
       {isLoading ? (
         <Preloader /> // Show Preloader while loading
       ) : (
         <RouterProvider router={router} />
       )}
+      </OrderProvider>
       </ProductProvider>
       </CartProvider>
       </UserProvider>
