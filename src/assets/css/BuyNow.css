@@ -11,7 +11,6 @@
 }
 form input, textarea, select{
   padding: 12px;
-  /* border: 1px rgba(0, 0, 0, 0.5); */
   border-radius: 12px;
   outline:none;
   border: 1px solid rgba(0, 0, 0, 0.4);
@@ -40,4 +39,46 @@ form select options{
   border-radius: 12px;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.4);
+}
+.buy-now-div{
+  gap: 12px;
+}
+.address-div{
+  background-color: #D9D9D9;
+}
+.address-div form{
+  gap: 12px;
+}
+.address-div form input{
+  border: none;
+  border-radius: 0px;
+}
+.submit-btn{
+  width: max-content !important;
+  padding: 12px 32px;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+}
+.order-info-div{
+  background-color: #D9D9D9;
+}
+.payment-options{
+  gap: 12px;
+}
+.order-info-div p:first-of-type, .address-div p:first-of-type{
+  font-size: 24px;
+  font-weight: 600;
+}
+#pay-text{
+  font-size: 20px;
+  font-weight: 500;
+}
+.payment-options button{
+  border: none;
+  padding: 12px;
+}
+.payment-options button:hover{
+  background-color: black;
+  color: white;
 }
