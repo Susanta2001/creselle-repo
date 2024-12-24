@@ -1,127 +1,48 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
-// Create Order Context
-const OrderContext = createContext();
+export const OrderContext = createContext();
 
-const OrderProvider = ({ children }) => {
-  const [orders, setOrders] = useState([]);
-  const [authToken, setAuthToken] = useState(null); // To store the JWT token
+export const OrderProvider = ({ children }) => {
+  const [order, setOrder] = useState(null);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem('token') || sessionStorage.getItem('token');
-    if (storedToken) {
-      setAuthToken(storedToken);
-    }
-  }, []);
-
-  // Function to create a new order
-  const createOrder = async ({ items, totalAmount, address }) => {
-    if (!authToken) throw new Error('Authentication token is missing.');
+  const createOrder = async (amount, currency = 'INR') => {
     try {
-      const response = await fetch('http://localhost:5000/api/order/create', {
+      const response = await fetch('http://localhost:5000/api/order/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': authToken,
         },
-        body: JSON.stringify({
-          // user: userId,
-          items,
-          totalAmount,
-          address,
-        }),
+        body: JSON.stringify({ amount, currency }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to create order.');
-      }
+      if (!response.ok) throw new Error('Failed to create order');
 
       const data = await response.json();
-      setOrders((prevOrders) => [...prevOrders, data.order]); // Add new order to state
-      return data.order;
+      setOrder(data);
+      return data; // Return the order for further use
     } catch (error) {
-      console.error('Error creating order:', error.message);
-      throw error;
+      console.error('Error creating order:', error);
     }
   };
 
-  // Function to fetch all orders for a specific user
-  const getOrdersByUser = async (userId) => {
+  const fetchPaymentDetails = async (paymentId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/order/myorders`, {
-        method: 'GET',
-        headers: {
-          "auth-token":`${authToken}`
-        }
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/order/payment/${paymentId}`
+      );
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch orders.');
-      }
+      if (!response.ok) throw new Error('Failed to fetch payment details');
 
       const data = await response.json();
-      setOrders(data.orders); // Update state with fetched orders
-      return data.orders;
+      return data;
     } catch (error) {
-      console.error('Error fetching orders:', error.message);
-      throw error;
-    }
-  };
-
-  // Function to fetch a specific order by ID
-  const getOrderById = async (orderId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/order/${orderId}`, {
-        method: 'GET',
-      });
-
-      if (!response.ok) {
-        throw new Error('Order not found.');
-      }
-
-      const data = await response.json();
-      return data.order; // Return the specific order
-    } catch (error) {
-      console.error('Error fetching order by ID:', error.message);
-      throw error;
-    }
-  };
-
-  // Function to update the status of an order
-  const updateOrderStatus = async (orderId, status) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/order/update/${orderId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ status }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to update order status.');
-      }
-
-      const data = await response.json();
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order._id === orderId ? { ...order, status: data.order.status } : order
-        )
-      ); // Update the order status in state
-      return data.order;
-    } catch (error) {
-      console.error('Error updating order status:', error.message);
-      throw error;
+      console.error('Error fetching payment details:', error);
     }
   };
 
   return (
-    <OrderContext.Provider
-      value={{orders,createOrder,getOrdersByUser,getOrderById,updateOrderStatus,}}>
+    <OrderContext.Provider value={{ order, createOrder, fetchPaymentDetails }}>
       {children}
     </OrderContext.Provider>
   );
 };
-
-export { OrderContext, OrderProvider };

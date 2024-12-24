@@ -13,6 +13,8 @@ app.use(cors())
 app.use(express.json())
 
 // available routes
+app.use(cors({ origin: 'http://localhost:3000' }));
+
 app.use('/api/products', require('./routes/products'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/cart', require('./routes/cart'));

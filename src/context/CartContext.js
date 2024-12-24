@@ -17,7 +17,6 @@ const CartProvider = ({ children }) => {
                 console.error('No auth-token found!');
                 return;
             }
-            console.log(authToken);
 
             const response = await fetch('http://localhost:5000/api/cart/allCartProducts', {
                 method: 'GET',

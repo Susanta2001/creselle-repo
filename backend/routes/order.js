@@ -1,89 +1,63 @@
 const express = require('express');
+const Razorpay = require('razorpay');
 const router = express.Router();
-const fetchuser = require('../middleware/fetchuser');
 const Order = require('../models/Order');
 
-// Route 1: Create a new order (Login required)
-router.post('/create', fetchuser, async (req, res) => {
-  const { items, totalAmount, address } = req.body;
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_CBzEZCN0hbg5qZ',
+  key_secret: 'Rm23DEgJN9HusbicQlEck30E',
+});
 
-  if (!items || !Array.isArray(items) || items.length === 0) {
-    return res.status(400).json({ success: false, error: 'Order items are required.' });
-  }
+// Route: Create an order for online payment
+router.post('/create-order', async (req, res) => {
+  const { amount, currency } = req.body;
 
-  if (!totalAmount || totalAmount <= 0) {
-    return res.status(400).json({ success: false, error: 'Total amount must be valid.' });
-  }
-
-  if (!address || address.trim() === '') {
-    return res.status(400).json({ success: false, error: 'Delivery address is required.' });
-  }
+  const options = {
+    amount: amount * 100, // Razorpay requires the amount in paise
+    currency: currency || 'INR',
+    receipt: `receipt_${Date.now()}`,
+    payment_capture: 1, // Auto-capture the payment
+  };
 
   try {
-    const order = new Order({
-      user: req.user.id,
-      items,
-      totalAmount,
-      address,
+    const order = await razorpay.orders.create(options);
+
+    // Save the order details in your database
+    const newOrder = new Order({
+      orderId: order.id,
+      amount: order.amount,
+      currency: order.currency,
+      status: 'created',
     });
+    await newOrder.save();
 
-    await order.save();
-    res.json({ success: true, order });
+    res.status(201).json({
+      success: true,
+      orderId: order.id,
+      currency: order.currency,
+      amount: order.amount,
+    });
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Internal server error');
+    console.error('Error creating Razorpay order:', error);
+    res.status(500).json({ error: 'Failed to create order' });
   }
 });
 
-// Route 2: Get all orders for the logged-in user (Login required)
-router.get('/myorders', fetchuser, async (req, res) => {
-  try {
-    const orders = await Order.find({ user: req.user.id }).sort({ createdAt: -1 });
-    res.json({ success: true, orders });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Internal server error');
-  }
-});
-
-// Route 3: Get a specific order by ID (Login required)
-router.get('/:id', fetchuser, async (req, res) => {
-  try {
-    const order = await Order.findOne({ _id: req.params.id, user: req.user.id });
-
-    if (!order) {
-      return res.status(404).json({ success: false, error: 'Order not found' });
+router.post('/verify-payment', async (req, res) => {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+  
+    const crypto = require('crypto');
+    const hmac = crypto.createHmac('sha256', 'Rm23DEgJN9HusbicQlEck30E'); // Your Razorpay key secret
+  
+    hmac.update(`${razorpay_order_id}|${razorpay_payment_id}`);
+    const generatedSignature = hmac.digest('hex');
+  
+    if (generatedSignature === razorpay_signature) {
+      res.status(200).json({ success: true, message: 'Payment verified successfully' });
+    } else {
+      res.status(400).json({ success: false, message: 'Invalid payment signature' });
     }
+  });
+  
 
-    res.json({ success: true, order });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Internal server error');
-  }
-});
-
-// Route 4: Update the status of an order (Admin-only)
-router.put('/update/:id', async (req, res) => {
-  const { status } = req.body;
-
-  if (!status || !['Pending', 'Shipped', 'Delivered', 'Cancelled'].includes(status)) {
-    return res.status(400).json({ success: false, error: 'Invalid status.' });
-  }
-
-  try {
-    const order = await Order.findById(req.params.id);
-
-    if (!order) {
-      return res.status(404).json({ success: false, error: 'Order not found' });
-    }
-
-    order.status = status;
-    await order.save();
-
-    res.json({ success: true, order });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Internal server error');
-  }
-});
-module.exports = router; 
+module.exports = router;
